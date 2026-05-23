@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Encyclopédie Paphiopedilum</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:#0d1810;--cream:#f4f0e6;--parchment:#ede5d0;
+    --jade:#2a5c42;--jade-l:#3d8a60;--jade-pale:#c5ddd0;
+    --gold:#b07820;--gold-l:#d4a030;
+    --border:#c5b898;--text:#1a2e1e;--muted:#637060;
+    --c-parv:#1e6e4e;--c-brach:#b07820;--c-poly:#5a3278;
+    --c-barb:#7a3040;--c-sigma:#1a4a72;--c-coch:#9a4e18;--c-mega:#3a6a28;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--cream);color:var(--text);font-family:'Jost',sans-serif;min-height:100vh}
+
+  header{background:var(--ink);padding:2.8rem 2rem 2rem;text-align:center;position:relative;overflow:hidden}
+  header::before{content:'';position:absolute;inset:0;
+    background:radial-gradient(ellipse at 25% 60%,rgba(30,110,78,.35) 0%,transparent 55%),
+               radial-gradient(ellipse at 75% 40%,rgba(90,50,120,.25) 0%,transparent 55%)}
+  .eyebrow{font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--jade-pale);margin-bottom:.7rem;position:relative;font-weight:400}
+  h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,5.5vw,4rem);font-weight:300;color:#fff;line-height:1;position:relative}
+  h1 em{font-style:italic;color:var(--gold-l);font-weight:400}
+  .hsub{color:rgba(255,255,255,.4);font-size:.88rem;margin-top:.55rem;font-weight:300;position:relative}
+  .hdiv{display:flex;align-items:center;justify-content:center;gap:.9rem;margin-top:1.3rem;position:relative}
+  .hdiv::before,.hdiv::after{content:'';width:50px;height:1px;background:linear-gradient(90deg,transparent,var(--jade-pale))}
+  .hdiv::after{background:linear-gradient(90deg,var(--jade-pale),transparent)}
+  .hdiv span{color:var(--jade-pale);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase}
+
+  .legend{background:rgba(0,0,0,.3);border-top:1px solid rgba(255,255,255,.07);padding:.65rem 1.5rem;display:flex;flex-wrap:wrap;gap:.8rem;justify-content:center}
+  .li{display:flex;align-items:center;gap:.35rem;font-size:.72rem;color:rgba(255,255,255,.5);font-weight:300}
+  .ld{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+
+  /* photo loading status bar */
+  .photo-bar{background:#1a2e1e;border-bottom:1px solid rgba(255,255,255,.06);padding:.4rem 1.5rem;display:flex;align-items:center;gap:.8rem;font-size:.75rem;color:rgba(255,255,255,.5)}
+  .photo-bar .prog{flex:1;height:3px;background:rgba(255,255,255,.1);border-radius:2px;overflow:hidden}
+  .photo-bar .prog-inner{height:100%;background:var(--jade-l);border-radius:2px;transition:width .4s;width:0%}
+  .photo-bar .prog-lbl{white-space:nowrap;min-width:120px}
+
+  .controls{background:#fff;border-bottom:1px solid var(--border);padding:.8rem 1.5rem;display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;position:sticky;top:0;z-index:100;box-shadow:0 2px 14px rgba(0,0,0,.07)}
+  .sw{flex:1;min-width:160px;position:relative}
+  .sw input{width:100%;padding:.48rem 1rem .48rem 2.2rem;border:1.5px solid var(--border);border-radius:40px;font-family:'Jost',sans-serif;font-size:.88rem;background:var(--cream);color:var(--text);outline:none;transition:border-color .2s}
+  .sw input:focus{border-color:var(--jade)}
+  .sw::before{content:'⌕';position:absolute;left:.65rem;top:50%;transform:translateY(-50%);color:var(--muted);font-size:1rem}
+  .fg{display:flex;gap:.3rem;flex-wrap:wrap}
+  .fb{padding:.32rem .8rem;border:1.5px solid var(--border);border-radius:40px;background:transparent;font-family:'Jost',sans-serif;font-size:.78rem;color:var(--muted);cursor:pointer;transition:all .2s;white-space:nowrap}
+  .fb:hover{border-color:var(--jade);color:var(--jade)}
+  .fb.active{background:var(--jade);border-color:var(--jade);color:#fff}
+  .cbadge{background:var(--jade);color:#fff;border-radius:20px;padding:.18rem .65rem;font-size:.78rem;font-weight:500;margin-left:auto;white-space:nowrap}
+
+  main{max-width:1500px;margin:0 auto;padding:1.8rem}
+  .sh{margin:2.2rem 0 1.1rem;display:flex;align-items:center;gap:.9rem}
+  .sh h2{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:400;font-style:italic;white-space:nowrap}
+  .sc{font-size:.7rem;font-weight:500;padding:.12rem .45rem;border-radius:4px;border:1px solid;white-space:nowrap}
+  .sl{flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent)}
+  .sdesc{font-size:.72rem;color:var(--muted);font-style:normal;max-width:280px;line-height:1.3}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1.1rem}
+
+  .card{background:#fff;border:1px solid var(--border);border-radius:9px;overflow:hidden;cursor:pointer;transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column}
+  .card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.1)}
+  .ciw{position:relative;padding-top:65%;overflow:hidden;background:var(--parchment)}
+  .ciw img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .38s;opacity:1}
+  .ciw img.loaded{opacity:1}
+  .card:hover .ciw img{transform:scale(1.07)}
+  .img-spinner{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+  .spinner{width:24px;height:24px;border:2px solid var(--border);border-top-color:var(--jade);border-radius:50%;animation:spin .8s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .noimg{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.3rem;color:var(--muted);font-size:1.7rem}
+  .noimg span{font-size:.65rem;font-family:'Jost',sans-serif}
+  .pip{position:absolute;bottom:.45rem;right:.45rem;width:9px;height:9px;border-radius:50%;border:2px solid rgba(255,255,255,.8);box-shadow:0 1px 4px rgba(0,0,0,.3)}
+  .new-badge{position:absolute;top:.4rem;left:.4rem;background:rgba(180,100,0,.88);color:#fff;font-size:.6rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:.12rem .38rem;border-radius:3px}
+  .cb2{padding:.8rem;flex:1;display:flex;flex-direction:column;gap:.2rem}
+  .cn{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.97rem;font-weight:400;color:var(--ink);line-height:1.2}
+  .co{font-size:.72rem;color:var(--muted);display:flex;align-items:center;gap:.25rem}
+  .co::before{content:'📍';font-size:.6rem}
+  .ce{font-size:.68rem;color:#8a9a80;display:flex;align-items:center;gap:.25rem}
+  .ce::before{content:'⛰';font-size:.6rem}
+  .cd{font-size:.73rem;color:var(--muted);font-style:italic;margin-top:.25rem;line-height:1.35}
+  .lbadge{display:inline-flex;align-items:center;gap:.25rem;font-size:.65rem;font-weight:500;margin-top:.35rem;padding:.12rem .42rem;border-radius:3px;align-self:flex-start}
+
+  /* MODAL */
+  .mo{display:none;position:fixed;inset:0;background:rgba(5,12,8,.82);z-index:1000;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(5px)}
+  .mo.open{display:flex}
+  .md{background:var(--cream);border-radius:13px;max-width:680px;width:100%;max-height:90vh;overflow-y:auto;position:relative;box-shadow:0 40px 90px rgba(0,0,0,.5);animation:fu .26s ease}
+  @keyframes fu{from{opacity:0;transform:translateY(14px) scale(.97)}to{opacity:1;transform:none}}
+  .mc{position:absolute;top:.8rem;right:.8rem;background:rgba(0,0,0,.2);border:none;border-radius:50%;width:1.9rem;height:1.9rem;font-size:.95rem;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:center;z-index:10;transition:background .2s}
+  .mc:hover{background:var(--jade)}
+  .mhero{position:relative;}
+  .mimg{width:100%;height:300px;object-fit:cover;border-radius:13px 13px 0 0;}
+  .mph{width:100%;height:180px;background:var(--parchment);border-radius:13px 13px 0 0;display:flex;align-items:center;justify-content:center;font-size:3rem}
+  .mband{position:absolute;bottom:0;left:0;right:0;padding:.45rem 1rem;font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.9)}
+  .mbody{padding:1.6rem}
+  .mt{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-style:italic;font-weight:400;margin-bottom:.2rem}
+  .msub{color:var(--muted);font-size:.82rem;margin-bottom:1.1rem;font-weight:300}
+  .citesbadge{display:inline-flex;align-items:center;gap:.3rem;background:#fff8e1;color:#7a5800;border:1px solid #f0c040;border-radius:4px;padding:.13rem .45rem;font-size:.68rem;font-weight:600;margin-bottom:.7rem}
+  .mgrid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:1.1rem}
+  .mi{background:#fff;border:1px solid var(--border);border-radius:6px;padding:.65rem}
+  .mi label{font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:.18rem}
+  .mi span{font-size:.9rem;color:var(--text)}
+  .mdesc{font-size:.93rem;line-height:1.72;color:var(--text);border-top:1px solid var(--border);padding-top:.9rem}
+  .mphoto-credit{margin-top:.7rem;font-size:.72rem;color:var(--muted);font-style:italic}
+  .mphoto-credit a{color:var(--jade);text-decoration:none}
+
+  .empty{text-align:center;padding:4rem 2rem;color:var(--muted);grid-column:1/-1}
+  .empty .ic{font-size:3rem;margin-bottom:.8rem}
+
+  .add-photo-btn{
+    padding:.45rem 1rem;background:var(--jade);color:#fff;border:none;
+    border-radius:20px;font-family:'Jost',sans-serif;font-size:.78rem;
+    font-weight:500;cursor:pointer;transition:background .2s;
+  }
+  .add-photo-btn:hover{background:var(--jade-l)}
+  .edit-photo-btn{
+    position:absolute;bottom:.45rem;left:.45rem;
+    padding:.2rem .45rem;background:rgba(0,0,0,.55);color:#fff;
+    border:none;border-radius:4px;font-size:.65rem;cursor:pointer;
+    opacity:0;transition:opacity .2s;z-index:5;
+  }
+  .ciw:hover .edit-photo-btn{opacity:1}
+
+  /* ── COLLECTION ── */
+  .own-ribbon{
+    position:absolute;top:0;left:0;
+    background:linear-gradient(135deg,#2a5c42 0%,#2a5c42 45%,transparent 45%);
+    width:46px;height:46px;z-index:4;
+  }
+  .own-ribbon::after{content:'✓';position:absolute;top:5px;left:5px;color:#fff;font-size:.75rem;font-weight:700}
+  .own-star{
+    position:absolute;top:.4rem;right:2rem;
+    font-size:.9rem;z-index:4;
+    filter:drop-shadow(0 1px 2px rgba(0,0,0,.4));
+  }
+  .collect-btn{
+    display:flex;align-items:center;gap:.35rem;
+    margin-top:.5rem;padding:.35rem .8rem;
+    border-radius:20px;border:1.5px solid;
+    font-family:'Jost',sans-serif;font-size:.75rem;font-weight:500;
+    cursor:pointer;transition:all .2s;align-self:flex-start;
+  }
+  .collect-btn.owned{background:#2a5c42;border-color:#2a5c42;color:#fff}
+  .collect-btn.owned:hover{background:#c0392b;border-color:#c0392b}
+  .collect-btn.owned:hover::before{content:'✕ Retirer'}
+  .collect-btn.owned span{display:none}
+  .collect-btn.owned:not(:hover)::before{content:'✓ Dans ma collection'}
+  .collect-btn.notowned{background:transparent;border-color:var(--border);color:var(--muted)}
+  .collect-btn.notowned:hover{border-color:#2a5c42;color:#2a5c42;background:#edf5f0}
+
+  .collection-bar{
+    background:#1a3a28;border-bottom:1px solid rgba(255,255,255,.08);
+    padding:.5rem 1.5rem;display:flex;align-items:center;gap:1rem;
+    font-size:.78rem;color:rgba(255,255,255,.6);
+  }
+  .collection-bar strong{color:#6dd4a0;font-size:.9rem}
+  .coll-filter-btn{
+    margin-left:auto;padding:.28rem .8rem;
+    border:1.5px solid rgba(109,212,160,.4);border-radius:20px;
+    background:transparent;color:#6dd4a0;font-family:'Jost',sans-serif;
+    font-size:.75rem;cursor:pointer;transition:all .2s;
+  }
+  .coll-filter-btn.active{background:#2a5c42;border-color:#2a5c42;color:#fff}
+  .coll-filter-btn:hover{background:#2a5c42;border-color:#2a5c42;color:#fff}
+
+  /* modal own button */
+  .modal-collect-btn{
+    display:flex;align-items:center;justify-content:center;gap:.5rem;
+    width:100%;padding:.6rem;margin-bottom:1rem;
+    border-radius:8px;border:2px solid;
+    font-family:'Jost',sans-serif;font-size:.9rem;font-weight:500;cursor:pointer;
+    transition:all .2s;
+  }
+  .modal-collect-btn.owned{background:#2a5c42;border-color:#2a5c42;color:#fff}
+  .modal-collect-btn.owned:hover{background:#c0392b;border-color:#c0392b}
+  .modal-collect-btn.notowned{background:transparent;border-color:var(--border);color:var(--muted)}
+  .modal-collect-btn.notowned:hover{border-color:#2a5c42;color:#2a5c42;background:#edf5f0}
+  footer{text-align:center;padding:1.8rem;color:var(--muted);font-size:.8rem;border-top:1px solid var(--border);margin-top:3rem}
+
+  /* ── CARE / ENTRETIEN ── */
+  .care-section{margin-top:1rem;border-top:1px solid var(--border);padding-top:1rem}
+  .care-title{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--jade);margin-bottom:.7rem;display:flex;align-items:center;gap:.5rem}
+  .care-title::before{content:'🌿';font-size:.85rem}
+  .care-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:.7rem}
+  .care-item{background:#f0f5f0;border:1px solid #c5ddc8;border-radius:6px;padding:.6rem}
+  .care-item label{font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--jade);display:block;margin-bottom:.15rem}
+  .care-item span{font-size:.82rem;color:var(--text)}
+  .diff-badge{display:inline-flex;align-items:center;padding:.2rem .55rem;border-radius:20px;font-size:.72rem;font-weight:600;margin-bottom:.6rem}
+  .diff-facile{background:#d4edda;color:#155724}
+  .diff-inter{background:#fff3cd;color:#856404}
+  .diff-diff{background:#f8d7da;color:#721c24}
+  .diff-peu{background:#e2e3e5;color:#383d41}
+  .substrate-box{background:#f5f0e4;border:1px solid #d4c9a8;border-radius:6px;padding:.65rem;font-size:.82rem;color:var(--text);line-height:1.5}
+  .substrate-box strong{display:block;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem}
+  @media(max-width:600px){main{padding:1rem}.mgrid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">Orchidaceae · Cypripedioideae · Orchidées Sabot de Vénus</div>
+  <h1>Genre <em>Paphiopedilum</em></h1>
+  <p class="hsub">~115 espèces primaires · Appendice I CITES · Photos via API Wikimedia Commons</p>
+  <div class="hdiv"><span>7 sous-genres · Liste exhaustive</span></div>
+</header>
+
+<div class="legend">
+  <div class="li"><div class="ld" style="background:var(--c-parv)"></div>Parvisepalum (7 sp.)</div>
+  <div class="li"><div class="ld" style="background:var(--c-brach)"></div>Brachypetalum (8 sp.)</div>
+  <div class="li"><div class="ld" style="background:var(--c-poly)"></div>Polyantha (18 sp.)</div>
+  <div class="li"><div class="ld" style="background:var(--c-barb)"></div>Barbata (38 sp.)</div>
+  <div class="li"><div class="ld" style="background:var(--c-sigma)"></div>Sigmatopetalum (21 sp.)</div>
+  <div class="li"><div class="ld" style="background:var(--c-coch)"></div>Cochlopetalum (7 sp.)</div>
+  <div class="li"><div class="ld" style="background:var(--c-mega)"></div>Megastaminodium (1 sp.)</div>
+</div>
+
+<div class="photo-bar">
+  <span>📸 Chargement des photos via Wikimedia Commons…</span>
+  <div class="prog"><div class="prog-inner" id="progBar"></div></div>
+  <span class="prog-lbl" id="progLbl">0 / 0</span>
+</div>
+
+<div class="collection-bar">
+  🌿 Ma collection : <strong id="collCount">0 orchidée</strong>
+  <button class="coll-filter-btn" id="collFilterBtn" onclick="toggleCollFilter(this)">🔍 Voir ma collection</button>
+  <button class="coll-filter-btn" onclick="exportData()" title="Exporter collection + photos perso">💾 Exporter</button>
+  <button class="coll-filter-btn" onclick="showImportDialog()" title="Importer une sauvegarde">📂 Importer</button>
+</div>
+
+<div class="controls">
+  <div class="sw"><input type="text" id="si" placeholder="Rechercher espèce, pays…" oninput="filterSpecies()"></div>
+  <div class="fg">
+    <button class="fb active" onclick="setFilter('all',this)">Toutes</button>
+    <button class="fb" onclick="setFilter('parvisepalum',this)">Parvisepalum</button>
+    <button class="fb" onclick="setFilter('brachypetalum',this)">Brachypetalum</button>
+    <button class="fb" onclick="setFilter('polyantha',this)">Polyantha</button>
+    <button class="fb" onclick="setFilter('paphiopedilum',this)">Barbata</button>
+    <button class="fb" onclick="setFilter('sigmatopetalum',this)">Sigmatopetalum</button>
+    <button class="fb" onclick="setFilter('cochlopetalum',this)">Cochlopetalum</button>
+    <button class="fb" onclick="setFilter('megastaminodium',this)">Megastaminodium</button>
+  </div>
+  <div class="cbadge" id="cb">— espèces</div>
+</div>
+
+<main id="mc2"></main>
+
+<div class="mo" id="mo" onclick="closeMO(event)">
+  <div class="md"><button class="mc" onclick="closeMD()">✕</button><div id="mb"></div></div>
+</div>
+
+<footer>
+  Sources : Wikipedia · Plants of the World Online (Kew) · Cribb "The Genus Paphiopedilum"<br>
+  Photos : <a href="https://commons.wikimedia.org" target="_blank" style="color:var(--jade)">Wikimedia Commons</a> via API (licences libres CC) · Toutes espèces CITES Appendice I
+</footer>
+
+<script src="paph_photos.js"></script>
+<script>
+// ── SUBGENUS CONFIG ──────────────────────────────────────────────────────
+const SUBG={
+  parvisepalum:{label:'Parvisepalum',color:'#1e6e4e',desc:'Fleurs unicolores grandes. Chine du Sud & Vietnam.'},
+  brachypetalum:{label:'Brachypetalum',color:'#b07820',desc:'Pétales courts larges, lithophytes calcaires.'},
+  polyantha:{label:'Polyantha — Multiflores',color:'#5a3278',desc:'Plusieurs fleurs par hampe, pétales longs.'},
+  paphiopedilum:{label:'Paphiopedilum / Barbata',color:'#7a3040',desc:'Feuilles mouchetées, sépale rayé.'},
+  sigmatopetalum:{label:'Sigmatopetalum',color:'#1a4a72',desc:'Feuilles vertes unies. Grand groupe diversifié.'},
+  cochlopetalum:{label:'Cochlopetalum',color:'#9a4e18',desc:'Floraison séquentielle. Sumatra & Java.'},
+  megastaminodium:{label:'Megastaminodium',color:'#3a6a28',desc:'Grand staminode. Moluques.'},
+};
+
+// ── SPECIES (~115) ───────────────────────────────────────────────────────
+const SP=[
+  // ═══ PARVISEPALUM (7) ═══════════════════════════════════════════════
+  {id:'armeniacum',subg:'parvisepalum',n:'P. armeniacum',full:'Paphiopedilum armeniacum',com:'Golden Slipper Orchid',o:'Chine (Yunnan)',e:'1000–2000 m',new_:false,lv:'mouchetées',d:'Découverte en 1979, décrite en 1982. Fleur jaune d\'or pur remarquable. Parmi les plus belles découvertes orchidologiques du XXe siècle.'},
+  {id:'delenatii',subg:'parvisepalum',n:'P. delenatii',full:'Paphiopedilum delenatii',com:'',o:'Vietnam S. (Khanh Hoa)',e:'600–1300 m',new_:false,lv:'mouchetées',d:'Fleurs rose pâle délicates. Décrite en 1924, "perdue" puis redécouverte en 1999. Très prisée et hybridée.'},
+  {id:'emersonii',subg:'parvisepalum',n:'P. emersonii',full:'Paphiopedilum emersonii',com:'',o:'Chine (Guizhou, Guangxi), Vietnam N.',e:'460–750 m',new_:false,lv:'mouchetées',d:'Grande fleur blanc crème, odeur sucrée caractéristique. Décrit en 1986.'},
+  {id:'hangianum',subg:'parvisepalum',n:'P. hangianum',full:'Paphiopedilum hangianum',com:'',o:'Vietnam (Ha Giang), Chine (Yunnan)',e:'460–760 m',new_:false,lv:'mouchetées',d:'Fleurs blanc-verdâtre très grandes. Décrite en 1999. Quasi éteinte par braconnage.'},
+  {id:'malipoense',subg:'parvisepalum',n:'P. malipoense',full:'Paphiopedilum malipoense',com:'',o:'Chine (Yunnan, Guangxi), Vietnam N.',e:'570–1600 m',new_:false,lv:'mouchetées',d:'Fleurs vert pomme, très parfumées (odeur de framboise). Décrite en 1984. Lithophyte sur falaises calcaires.'},
+  {id:'micranthum',subg:'parvisepalum',n:'P. micranthum',full:'Paphiopedilum micranthum',com:'',o:'Chine (Yunnan, Guangxi), Vietnam',e:'360–1600 m',new_:false,lv:'mouchetées',d:'Lèvre énorme et ballonnée blanc-rose. L\'une des plus spectaculaires. Décrite en 1984.'},
+  {id:'vietnamense',subg:'parvisepalum',n:'P. vietnamense',full:'Paphiopedilum vietnamense',com:'',o:'Vietnam (Thái Nguyên)',e:'350–1400 m',new_:false,lv:'mouchetées',d:'Fleurs rose-lilas vif. Quasi éteinte à l\'état sauvage quelques années après sa découverte en 1999.'},
+  // ═══ BRACHYPETALUM (8) ══════════════════════════════════════════════
+  {id:'bellatulum',subg:'brachypetalum',n:'P. bellatulum',full:'Paphiopedilum bellatulum',com:'Egg-in-a-Nest Orchid',o:'Chine (Yunnan), Thaïlande, Myanmar',e:'340–1600 m',new_:false,lv:'mouchetées',d:'Fleurs blanc crème ponctuées de brun-pourpre. Pétales extrêmement larges et ronds. Feuilles mouchetées ornementales.'},
+  {id:'concolor',subg:'brachypetalum',n:'P. concolor',full:'Paphiopedilum concolor',com:'',o:'Chine, Myanmar, Laos, Thaïlande',e:'0–1060 m',new_:false,lv:'mouchetées',d:'Fleurs jaune pâle à crème ponctuées de petits points pourpres. Lithophyte sur calcaire. Très adaptable.'},
+  {id:'godefroyae',subg:'brachypetalum',n:'P. godefroyae',full:'Paphiopedilum godefroyae',com:'',o:'Thaïlande péninsulaire, Vietnam',e:'3–25 m',new_:false,lv:'mouchetées',d:'Fleurs crème fortement ponctuées. Lithophyte de très basse altitude sur falaises calcaires côtières.'},
+  {id:'myanmaricum',subg:'brachypetalum',n:'P. myanmaricum',full:'Paphiopedilum myanmaricum',com:'',o:'Myanmar',e:'200–400 m',new_:true,lv:'mouchetées',d:'Décrite en 2017. Lithophyte endémique au Myanmar. Proche de P. godefroyae.'},
+  {id:'niveum',subg:'brachypetalum',n:'P. niveum',full:'Paphiopedilum niveum',com:'',o:'Thaïlande, Malaisie (Langkawi)',e:'9–60 m',new_:false,lv:'mouchetées',d:'Fleurs blanc pur légèrement ponctuées. Lithophyte sur falaises calcaires au bord de la mer.'},
+  {id:'thaianum',subg:'brachypetalum',n:'P. thaianum',full:'Paphiopedilum thaianum',com:'',o:'Thaïlande (Doi Chiang Dao)',e:'350–450 m',new_:true,lv:'mouchetées',d:'Décrite en 2006. Endémique à une seule montagne de Thaïlande. Très rare.'},
+  {id:'trungkienii',subg:'brachypetalum',n:'P. trungkienii',full:'Paphiopedilum trungkienii',com:'',o:'Vietnam',e:'500–600 m',new_:true,lv:'mouchetées',d:'Espèce récemment décrite, endémique au Vietnam. Proche de P. concolor.'},
+  {id:'wenshanense',subg:'brachypetalum',n:'P. wenshanense',full:'Paphiopedilum wenshanense',com:'',o:'Chine (Yunnan)',e:'1000–1200 m',new_:true,lv:'mouchetées',d:'Décrite en 2000. Lithophyte d\'altitude dans les karsts du Yunnan.'},
+  // ═══ POLYANTHA (18) ═════════════════════════════════════════════════
+  {id:'adductum',subg:'polyantha',n:'P. adductum',full:'Paphiopedilum adductum',com:'',o:'Philippines (Mindanao)',e:'1200–1300 m',new_:false,lv:'unies',d:'2–3 grandes fleurs par hampe. Pétales très longs retombants et ciliés.'},
+  {id:'dianthum',subg:'polyantha',n:'P. dianthum',full:'Paphiopedilum dianthum',com:'',o:'Chine (Yunnan, Guangxi), Vietnam N.',e:'460–1060 m',new_:false,lv:'unies',d:'2 fleurs par hampe. Pétales longs et étroits fortement torsadés. Espèce de Chine du Sud.'},
+  {id:'gigantifolium',subg:'polyantha',n:'P. gigantifolium',full:'Paphiopedilum gigantifolium',com:'',o:'Indonésie (Sulawesi S.)',e:'0–980 m',new_:false,lv:'unies',d:'Très grandes feuilles (jusqu\'à 80 cm). 2–4 fleurs par hampe. Endémique à Sulawesi.'},
+  {id:'glanduliferum',subg:'polyantha',n:'P. glanduliferum',full:'Paphiopedilum glanduliferum',com:'',o:'Nouvelle-Guinée, Indonésie',e:'0–1700 m',new_:false,lv:'unies',d:'Hampe glanduleuse portant 2–4 fleurs. Pétales très longs et verruqueux. Espèce variable.'},
+  {id:'haynaldianum',subg:'polyantha',n:'P. haynaldianum',full:'Paphiopedilum haynaldianum',com:'',o:'Philippines (Negros, Luzon)',e:'0–1400 m',new_:false,lv:'unies',d:'3–5 fleurs par hampe. Pétales longs retombants, vert-brun tachés de pourpre.'},
+  {id:'intaniae',subg:'polyantha',n:'P. intaniae',full:'Paphiopedilum intaniae',com:'',o:'Indonésie (Sulawesi)',e:'700–1070 m',new_:true,lv:'unies',d:'Décrite en 2000. 2–3 fleurs par hampe. Endémique à Sulawesi.'},
+  {id:'kolopakingii',subg:'polyantha',n:'P. kolopakingii',full:'Paphiopedilum kolopakingii',com:'',o:'Bornéo (Kalimantan)',e:'550–1000 m',new_:false,lv:'unies',d:'Jusqu\'à 10–12 fleurs par hampe ! L\'une des plus multiflores du genre.'},
+  {id:'lowii',subg:'polyantha',n:'P. lowii',full:'Paphiopedilum lowii',com:'',o:'Malaisie, Bornéo, Java, Sumatra',e:'200–1700 m',new_:false,lv:'unies',d:'3–6 fleurs par hampe. Pétales longs pendants tachés de brun-pourpre. Grande espèce répandue.'},
+  {id:'ooii',subg:'polyantha',n:'P. ooii',full:'Paphiopedilum ooii',com:'',o:'Malaisie (Sabah)',e:'~1050 m',new_:true,lv:'unies',d:'Décrite en 1999. Endémique à Sabah. Proche de P. lowii.'},
+  {id:'parishii',subg:'polyantha',n:'P. parishii',full:'Paphiopedilum parishii',com:'',o:'Myanmar, Thaïlande, Chine (Yunnan), Laos',e:'1000–1400 m',new_:false,lv:'unies',d:'Jusqu\'à 8 fleurs par hampe. Pétales étroits très longs et spiralés.'},
+  {id:'philippinense',subg:'polyantha',n:'P. philippinense',full:'Paphiopedilum philippinense',com:'',o:'Philippines, Bornéo',e:'0–500 m',new_:false,lv:'unies',d:'2–4 fleurs par hampe. Pétales très longs rubanés et tordus, tachés de brun-rouge.'},
+  {id:'platyphyllum',subg:'polyantha',n:'P. platyphyllum',full:'Paphiopedilum platyphyllum',com:'',o:'Malaisie (Sabah)',e:'~800 m',new_:true,lv:'unies',d:'Décrite en 2001. Feuilles larges et planes distinctives. Endémique à Sabah.'},
+  {id:'randsii',subg:'polyantha',n:'P. randsii',full:'Paphiopedilum randsii',com:'',o:'Philippines (Mindanao)',e:'460–500 m',new_:false,lv:'unies',d:'2–3 fleurs par hampe. Endémique à Mindanao.'},
+  {id:'rothschildianum',subg:'polyantha',n:'P. rothschildianum',full:'Paphiopedilum rothschildianum',com:'Gold of Kinabalu',o:'Bornéo (Sabah — Mt. Kinabalu)',e:'460–850 m',new_:false,lv:'unies',d:'"L\'orchidée la plus chère du monde". 3–5 énormes fleurs. Sépales blancs rayés de noir. Croissance ultra-lente (7–15 ans).'},
+  {id:'sanderianum',subg:'polyantha',n:'P. sanderianum',full:'Paphiopedilum sanderianum',com:'',o:'Malaisie (Sarawak, Gunung Mulu)',e:'100–500 m',new_:false,lv:'unies',d:'Pétales pouvant atteindre 90–100 cm — les plus longs pétales du règne végétal !'},
+  {id:'stonei',subg:'polyantha',n:'P. stonei',full:'Paphiopedilum stonei',com:'',o:'Bornéo (Sarawak)',e:'61–820 m',new_:false,lv:'unies',d:'2–4 fleurs par hampe. Pétales très longs blancs avec macules brun-pourpre. Endémique à Sarawak.'},
+  {id:'supardii',subg:'polyantha',n:'P. supardii',full:'Paphiopedilum supardii',com:'',o:'Bornéo (Kalimantan)',e:'550–880 m',new_:false,lv:'unies',d:'2–3 fleurs par hampe. Pétales très longs pendants et torsadés.'},
+  {id:'wilhelminae',subg:'polyantha',n:'P. wilhelminae',full:'Paphiopedilum wilhelminae',com:'',o:'Indonésie (Irian Jaya)',e:'61–820 m',new_:false,lv:'unies',d:'Espèce de Nouvelle-Guinée portant plusieurs fleurs. Endémique à l\'Irian Jaya.'},
+  // ═══ PAPHIOPEDILUM / BARBATA (38) ═══════════════════════════════════
+  {id:'acmodontum',subg:'paphiopedilum',n:'P. acmodontum',full:'Paphiopedilum acmodontum',com:'',o:'Philippines (Visayas, Negros)',e:'1000–1500 m',new_:false,lv:'mouchetées',d:'Pétales rose-pourpre à marges ciliées. Endémique aux îles Visayas.'},
+  {id:'agusii',subg:'paphiopedilum',n:'P. agusii',full:'Paphiopedilum agusii',com:'',o:'Indonésie (Java)',e:'~900 m',new_:true,lv:'mouchetées',d:'Décrite en 2017. Endémique à Java. Feuilles mouchetées. Proche de P. javanicum.'},
+  {id:'appletonianum',subg:'paphiopedilum',n:'P. appletonianum',full:'Paphiopedilum appletonianum',com:'',o:'Thaïlande, Laos, Hainan',e:'450–600 m',new_:false,lv:'mouchetées',d:'Sépale dorsal blanc rayé de vert-violet. Pétales rose-lilas ciliés. Espèce commune de basse altitude.'},
+  {id:'argus',subg:'paphiopedilum',n:'P. argus',full:'Paphiopedilum argus',com:'',o:'Philippines (Luzon)',e:'1200–1700 m',new_:false,lv:'mouchetées',d:'Pétales roses avec grosses macules noires. Sépale fortement rayé. Très ornementale.'},
+  {id:'barbatum',subg:'paphiopedilum',n:'P. barbatum',full:'Paphiopedilum barbatum',com:'Penang Slipper Orchid',o:'Malaisie péninsulaire, Sumatra',e:'480–1200 m',new_:false,lv:'mouchetées',d:'Sépale blanc rayé, pétales étalés ciliés, lèvre brun-pourpre. Introduite en Europe dès 1840.'},
+  {id:'braemii',subg:'paphiopedilum',n:'P. braemii',full:'Paphiopedilum braemii',com:'',o:'Indonésie (Sumatra)',e:'~700 m',new_:true,lv:'mouchetées',d:'Décrite en 1989. Endémique à Sumatra. Proche de P. superbiens.'},
+  {id:'bougainvilleanum',subg:'paphiopedilum',n:'P. bougainvilleanum',full:'Paphiopedilum bougainvilleanum',com:'',o:'Îles Salomon (Bougainville)',e:'1100–1850 m',new_:false,lv:'mouchetées',d:'Espèce isolée des Îles Salomon, loin de l\'aire principale du genre.'},
+  {id:'bullenianum',subg:'paphiopedilum',n:'P. bullenianum',full:'Paphiopedilum bullenianum',com:'',o:'Malaisie, Bornéo, Sumatra, Sulawesi',e:'0–1115 m',new_:false,lv:'mouchetées',d:'Espèce variable à plusieurs variétés reconnues. Pétales vert-olive ciliés.'},
+  {id:'bungebelangii',subg:'paphiopedilum',n:'P. bungebelangii',full:'Paphiopedilum bungebelangii',com:'',o:'Indonésie (Sumatra)',e:'~1575 m',new_:true,lv:'mouchetées',d:'Décrite en 2017. Espèce d\'altitude de Sumatra. Feuilles mouchetées.'},
+  {id:'callosum',subg:'paphiopedilum',n:'P. callosum',full:'Paphiopedilum callosum',com:'',o:'Cambodge, Laos, Vietnam, Thaïlande',e:'340–1000 m',new_:false,lv:'mouchetées',d:'Pétales rose-pourpre à poils noirs caractéristiques. Nombreuses variétés (warnerianum, potentianum…). Très populaire.'},
+  {id:'ciliolare',subg:'paphiopedilum',n:'P. ciliolare',full:'Paphiopedilum ciliolare',com:'',o:'Philippines (Siargao, Dinagat)',e:'300–800 m',new_:false,lv:'mouchetées',d:'Pétales longs fortement ciliés à l\'extrémité. Espèce des petites îles Philippines orientales.'},
+  {id:'dayanum',subg:'paphiopedilum',n:'P. dayanum',full:'Paphiopedilum dayanum',com:'',o:'Malaisie (Sabah)',e:'550–1000 m',new_:false,lv:'mouchetées',d:'Pétales très longs rayés de brun-violet. Feuilles mouchetées remarquables. Endémique à Sabah.'},
+  {id:'fowliei',subg:'paphiopedilum',n:'P. fowliei',full:'Paphiopedilum fowliei',com:'',o:'Philippines (Palawan)',e:'700–900 m',new_:false,lv:'mouchetées',d:'Endémique à Palawan. Petites fleurs roses à marges ciliées.'},
+  {id:'hennisianum',subg:'paphiopedilum',n:'P. hennisianum',full:'Paphiopedilum hennisianum',com:'',o:'Philippines (Negros, Panay)',e:'640–1000 m',new_:false,lv:'mouchetées',d:'Pétales rose-lilas ciliés. Endémique aux Visayas centrales.'},
+  {id:'hookerae',subg:'paphiopedilum',n:'P. hookerae',full:'Paphiopedilum hookerae',com:'',o:'Malaisie (Sarawak, Sabah)',e:'600–760 m',new_:false,lv:'mouchetées',d:'Pétales vert-jaunâtre tachetés de brun-pourpre. Var. volonteanum à Sabah.'},
+  {id:'javanicum',subg:'paphiopedilum',n:'P. javanicum',full:'Paphiopedilum javanicum',com:'',o:'Indonésie (Java, Bali, Lombok, Flores)',e:'910–1700 m',new_:false,lv:'mouchetées',d:'Endémique aux petites îles d\'Indonésie. Pétales vert-jaunâtre tachetés.'},
+  {id:'lawrenceanum',subg:'paphiopedilum',n:'P. lawrenceanum',full:'Paphiopedilum lawrenceanum',com:'',o:'Malaisie (Sabah, Sarawak)',e:'300–400 m',new_:false,lv:'mouchetées',d:'Feuilles très mouchetées remarquables. Fleurs vert rayé de violet, pétales ciliés.'},
+  {id:'lunatum',subg:'paphiopedilum',n:'P. lunatum',full:'Paphiopedilum lunatum',com:'',o:'Indonésie (Sumatra)',e:'1300–1600 m',new_:true,lv:'mouchetées',d:'Décrite en 2017. Espèce d\'altitude de Sumatra. Feuilles mouchetées en croissant caractéristiques.'},
+  {id:'nataschae',subg:'paphiopedilum',n:'P. nataschae',full:'Paphiopedilum nataschae',com:'',o:'Indonésie (Sulawesi)',e:'—',new_:true,lv:'mouchetées',d:'Décrite en 2015. Endémique à Sulawesi. Espèce récemment décrite.'},
+  {id:'papuanum',subg:'paphiopedilum',n:'P. papuanum',full:'Paphiopedilum papuanum',com:'',o:'Indonésie (Irian Jaya), PNG',e:'790–1000 m',new_:false,lv:'mouchetées',d:'Espèce de Nouvelle-Guinée à feuilles mouchetées. Pétales courts à marges ciliées.'},
+  {id:'parnatanum',subg:'paphiopedilum',n:'P. parnatanum',full:'Paphiopedilum parnatanum',com:'',o:'Philippines (Luzon O.)',e:'~700 m',new_:true,lv:'mouchetées',d:'Décrite en 1999. Endémique au Luzon occidental. Feuilles mouchetées.'},
+  {id:'purpuratum',subg:'paphiopedilum',n:'P. purpuratum',full:'Paphiopedilum purpuratum',com:'',o:'Chine (Hong Kong, Guangdong)',e:'500–1400 m',new_:false,lv:'mouchetées',d:'Endémique au sud de la Chine. Presque éteinte à l\'état sauvage par surexploitation.'},
+  {id:'qingyongii',subg:'paphiopedilum',n:'P. qingyongii',full:'Paphiopedilum qingyongii',com:'',o:'Chine (Xizang/Tibet)',e:'—',new_:true,lv:'mouchetées',d:'Décrite en 2010. Rare espèce du Tibet. L\'une des plus septentrionales du genre.'},
+  {id:'robinsonianum',subg:'paphiopedilum',n:'P. robinsonianum',full:'Paphiopedilum robinsonianum',com:'',o:'Indonésie (Sulawesi)',e:'~1400 m',new_:true,lv:'mouchetées',d:'Décrite en 2014. Endémique à Sulawesi.'},
+  {id:'rohmanii',subg:'paphiopedilum',n:'P. rohmanii',full:'Paphiopedilum rohmanii',com:'',o:'Indonésie (Sumatra O.)',e:'700–800 m',new_:true,lv:'mouchetées',d:'Décrite en 2017. Endémique à Sumatra occidental.'},
+  {id:'sandyanum',subg:'paphiopedilum',n:'P. sandyanum',full:'Paphiopedilum sandyanum',com:'',o:'Indonésie (Moluques)',e:'300–400 m',new_:true,lv:'mouchetées',d:'Décrite en 2022 — une des espèces les plus récemment décrites du genre.'},
+  {id:'sangii',subg:'paphiopedilum',n:'P. sangii',full:'Paphiopedilum sangii',com:'',o:'Indonésie (Sulawesi N.)',e:'1000–1200 m',new_:false,lv:'mouchetées',d:'Endémique au nord de Sulawesi. Pétales ciliés avec bandes pourpres.'},
+  {id:'schoseri',subg:'paphiopedilum',n:'P. schoseri',full:'Paphiopedilum schoseri',com:'',o:'Indonésie (Moluques, Iles Bacca)',e:'1000–1300 m',new_:false,lv:'mouchetées',d:'Endémique aux Moluques. Feuilles mouchetées. Pétales ciliés tachetés de pourpre.'},
+  {id:'sugiyamanum',subg:'paphiopedilum',n:'P. sugiyamanum',full:'Paphiopedilum sugiyamanum',com:'',o:'Malaisie (Sabah)',e:'~800 m',new_:true,lv:'mouchetées',d:'Décrite en 2001. Endémique à Sabah (Bornéo).'},
+  {id:'sukhakulii',subg:'paphiopedilum',n:'P. sukhakulii',full:'Paphiopedilum sukhakulii',com:'',o:'Thaïlande (Loei)',e:'240–910 m',new_:false,lv:'mouchetées',d:'Pétales vert clair avec grosses macules brun-noires très distinctives. Très populaire en culture.'},
+  {id:'superbiens',subg:'paphiopedilum',n:'P. superbiens',full:'Paphiopedilum superbiens',com:'',o:'Indonésie (Sumatra centrale)',e:'600–1200 m',new_:false,lv:'mouchetées',d:'Grande espèce à feuilles mouchetées larges. Fleurs vert-pourpre à pétales ciliés.'},
+  {id:'tonsum',subg:'paphiopedilum',n:'P. tonsum',full:'Paphiopedilum tonsum',com:'',o:'Indonésie (Sumatra)',e:'760–1600 m',new_:false,lv:'mouchetées',d:'Endémique à Sumatra. Feuilles mouchetées larges. Fleurs à pétales ciliés vert-pourpre.'},
+  {id:'urbanianum',subg:'paphiopedilum',n:'P. urbanianum',full:'Paphiopedilum urbanianum',com:'',o:'Philippines (Mindoro)',e:'460–760 m',new_:false,lv:'mouchetées',d:'Endémique à l\'île de Mindoro. Pétales rose-lilas ciliés.'},
+  {id:'venustum',subg:'paphiopedilum',n:'P. venustum',full:'Paphiopedilum venustum',com:'',o:'Inde (Assam, Sikkim)',e:'300–1500 m',new_:false,lv:'mouchetées',d:'Feuilles mouchetées de gris-vert et pourpre foncé. Fleurs blanc-verdâtre rayées. Introduite en Europe dès 1820.'},
+  {id:'violascens',subg:'paphiopedilum',n:'P. violascens',full:'Paphiopedilum violascens',com:'',o:'Papouasie-Nouvelle-Guinée',e:'180–1000 m',new_:false,lv:'mouchetées',d:'Espèce de Nouvelle-Guinée. Fleurs violacées à pourpres.'},
+  {id:'wardii',subg:'paphiopedilum',n:'P. wardii',full:'Paphiopedilum wardii',com:'',o:'Myanmar N., Chine (Yunnan)',e:'1200–1500 m',new_:false,lv:'mouchetées',d:'Feuilles mouchetées. Sépale dorsal fortement rayé de vert. Espèce sino-birmane.'},
+  {id:'wentworthianum',subg:'paphiopedilum',n:'P. wentworthianum',full:'Paphiopedilum wentworthianum',com:'',o:'Îles Salomon',e:'820–1800 m',new_:false,lv:'mouchetées',d:'Espèce des Îles Salomon. Pétales allongés tachés de pourpre.'},
+  {id:'zulhermanianum',subg:'paphiopedilum',n:'P. zulhermanianum',full:'Paphiopedilum zulhermanianum',com:'',o:'Indonésie (Sumatra O.)',e:'700–800 m',new_:true,lv:'mouchetées',d:'Décrite en 2017. Endémique à Sumatra occidental.'},
+  // ═══ SIGMATOPETALUM (21) ════════════════════════════════════════════
+  {id:'barbigerum',subg:'sigmatopetalum',n:'P. barbigerum',full:'Paphiopedilum barbigerum',com:'',o:'Chine (Yunnan, Guizhou), Vietnam, Thaïlande',e:'300–760 m',new_:false,lv:'unies',d:'Petite espèce à feuilles vertes. Fleurs jaune-vert à brun. Lithophyte calcaire très répandue.'},
+  {id:'charlesworthii',subg:'sigmatopetalum',n:'P. charlesworthii',full:'Paphiopedilum charlesworthii',com:'',o:'Inde (Assam), Myanmar, Thaïlande, Chine SW',e:'1200–1600 m',new_:false,lv:'unies',d:'Grand sépale dorsal rose très distinctif sur fleur brun-verdâtre. Contraste saisissant.'},
+  {id:'coccineum',subg:'sigmatopetalum',n:'P. coccineum',full:'Paphiopedilum coccineum',com:'',o:'Vietnam',e:'600–1000 m',new_:true,lv:'unies',d:'Décrite en 2000. Fleurs rougeâtres caractéristiques. Endémique au Vietnam.'},
+  {id:'druryi',subg:'sigmatopetalum',n:'P. druryi',full:'Paphiopedilum druryi',com:'',o:'Inde du Sud (Kerala)',e:'1500–1800 m',new_:false,lv:'unies',d:'Probablement éteinte à l\'état sauvage. Endémique aux Ghâts occidentaux du sud de l\'Inde.'},
+  {id:'erythroanthum',subg:'sigmatopetalum',n:'P. erythroanthum',full:'Paphiopedilum erythroanthum',com:'',o:'Chine (Yunnan)',e:'~1300 m',new_:true,lv:'unies',d:'Décrite récemment. Endémique au Yunnan. Proche de P. barbigerum.'},
+  {id:'exul',subg:'sigmatopetalum',n:'P. exul',full:'Paphiopedilum exul',com:'',o:'Thaïlande péninsulaire',e:'6–30 m',new_:false,lv:'unies',d:'Lithophyte côtière de très basse altitude. Fleurs jaune-verdâtre. Pousse presque au niveau de la mer.'},
+  {id:'fairrieanum',subg:'sigmatopetalum',n:'P. fairrieanum',full:'Paphiopedilum fairrieanum',com:'',o:'Inde (Himalaya, Sikkim), Bhoutan',e:'1300–2200 m',new_:false,lv:'unies',d:'Pétales incurvés vers le bas, nervures pourpre sur fond crème. Endémique aux contreforts himalayens.'},
+  {id:'gratrixianum',subg:'sigmatopetalum',n:'P. gratrixianum',full:'Paphiopedilum gratrixianum',com:'',o:'Vietnam, Laos',e:'910–1900 m',new_:false,lv:'unies',d:'Sépale dorsal brun-orange à reflets satinés. Proche de P. villosum.'},
+  {id:'helenae',subg:'sigmatopetalum',n:'P. helenae',full:'Paphiopedilum helenae',com:'',o:'Vietnam (Cao Bang)',e:'600–850 m',new_:true,lv:'unies',d:'Décrite en 1996. Petite espèce miniature à feuilles vertes. Endémique au nord Vietnam.'},
+  {id:'henryanum',subg:'sigmatopetalum',n:'P. henryanum',full:'Paphiopedilum henryanum',com:'',o:'Chine (Yunnan, Guangxi), Vietnam',e:'910–1400 m',new_:false,lv:'unies',d:'Sépale dorsal blanc fortement taché de rouge-brun, pétales rose-mauve. Découverte en 1987.'},
+  {id:'herrmannii',subg:'sigmatopetalum',n:'P. herrmannii',full:'Paphiopedilum herrmannii',com:'',o:'Vietnam',e:'700–900 m',new_:true,lv:'unies',d:'Décrite en 1995. Endémique au Vietnam. Proche de P. barbigerum.'},
+  {id:'hirsutissimum',subg:'sigmatopetalum',n:'P. hirsutissimum',full:'Paphiopedilum hirsutissimum',com:'',o:'Bangladesh, Inde (Assam), Thaïlande, Vietnam, Laos',e:'700–1800 m',new_:false,lv:'unies',d:'Pétales densément ciliés (très velus — hirsutissimum). Fleurs vert-pourpre. Grande espèce répandue.'},
+  {id:'insigne',subg:'sigmatopetalum',n:'P. insigne',full:'Paphiopedilum insigne',com:'',o:'Inde (Assam, Meghalaya), Népal, Myanmar',e:'910–1500 m',new_:false,lv:'unies',d:'Espèce type du genre. Introduite en Europe en 1820. Très robuste en culture. Nombreuses formes horticoles.'},
+  {id:'notatisepalum',subg:'sigmatopetalum',n:'P. notatisepalum',full:'Paphiopedilum notatisepalum',com:'',o:'Chine (Yunnan)',e:'~1300 m',new_:true,lv:'unies',d:'Espèce récemment décrite du Yunnan. Sépale distinctement ponctué. Feuilles vertes unies.'},
+  {id:'papiolaoticus',subg:'sigmatopetalum',n:'P. papilio-laoticus',full:'Paphiopedilum papilio-laoticus',com:'',o:'Laos',e:'—',new_:true,lv:'unies',d:'Décrite en 2018 — une des plus récemment décrites. Endémique au Laos.'},
+  {id:'spicerianum',subg:'sigmatopetalum',n:'P. spicerianum',full:'Paphiopedilum spicerianum',com:'',o:'Inde (Assam), Myanmar',e:'370–1550 m',new_:false,lv:'unies',d:'Sépale dorsal blanc avec une fine strie pourpre centrale — caractère unique et distinctif.'},
+  {id:'stenolomum',subg:'sigmatopetalum',n:'P. stenolomum',full:'Paphiopedilum stenolomum',com:'',o:'Chine (Yunnan)',e:'—',new_:true,lv:'unies',d:'Décrite en 2011. Endémique au Yunnan. Pétales étroits caractéristiques (steno = étroit).'},
+  {id:'tigrinum',subg:'sigmatopetalum',n:'P. tigrinum',full:'Paphiopedilum tigrinum',com:'',o:'Myanmar, Chine (Yunnan)',e:'1300–1900 m',new_:false,lv:'unies',d:'Fleurs jaune-vert fortement tachetées de brun-noir (aspect tigré). Décrite en 1990.'},
+  {id:'tranlienianum',subg:'sigmatopetalum',n:'P. tranlienianum',full:'Paphiopedilum tranlienianum',com:'',o:'Vietnam',e:'400–750 m',new_:true,lv:'unies',d:'Décrite en 1998. Endémique au Vietnam. Espèce peu connue des forêts calcaires.'},
+  {id:'vejvarutianum',subg:'sigmatopetalum',n:'P. vejvarutianum',full:'Paphiopedilum vejvarutianum',com:'',o:'Thaïlande (Kanchanaburi)',e:'500–750 m',new_:true,lv:'unies',d:'Décrite en 2003. Endémique à la province de Kanchanaburi. Espèce rare.'},
+  {id:'villosum',subg:'sigmatopetalum',n:'P. villosum',full:'Paphiopedilum villosum',com:'',o:'Inde (Assam), Myanmar, Thaïlande, Vietnam',e:'1200–1500 m',new_:false,lv:'unies',d:'Fleurs grandes et luisantes, brun-olive à brun-rouge avec reflets satinés. L\'une des plus cultivées et hybridées.'},
+  // ═══ COCHLOPETALUM (7) ══════════════════════════════════════════════
+  {id:'dodyanum',subg:'cochlopetalum',n:'P. dodyanum',full:'Paphiopedilum dodyanum',com:'',o:'Indonésie (Sumatra)',e:'~1300 m',new_:true,lv:'mouchetées',d:'Décrite en 2017. Floraison séquentielle. Endémique à Sumatra d\'altitude.'},
+  {id:'glaucophyllum',subg:'cochlopetalum',n:'P. glaucophyllum',full:'Paphiopedilum glaucophyllum',com:'',o:'Indonésie (Java, Sumatra)',e:'200–700 m',new_:false,lv:'mouchetées',d:'Floraison séquentielle : une fleur à la fois pendant plusieurs mois. Fleurs blanches à lilas.'},
+  {id:'liemianum',subg:'cochlopetalum',n:'P. liemianum',full:'Paphiopedilum liemianum',com:'',o:'Indonésie (Sumatra N.)',e:'550–1000 m',new_:false,lv:'mouchetées',d:'Très proche de P. glaucophyllum. Floraison séquentielle longue durée.'},
+  {id:'moquetteanum',subg:'cochlopetalum',n:'P. moquetteanum',full:'Paphiopedilum moquetteanum',com:'',o:'Indonésie (Java)',e:'~300 m',new_:false,lv:'mouchetées',d:'Endémique à Java. Floraison séquentielle. Espèce rare peu connue.'},
+  {id:'primulinum',subg:'cochlopetalum',n:'P. primulinum',full:'Paphiopedilum primulinum',com:'',o:'Indonésie (Sumatra N.)',e:'0–520 m',new_:false,lv:'mouchetées',d:'Fleurs jaune vif sur hampe séquentielle de longue durée. Floraison quasi continue.'},
+  {id:'victoria_mariae',subg:'cochlopetalum',n:'P. victoria-mariae',full:'Paphiopedilum victoria-mariae',com:'',o:'Indonésie (Sumatra)',e:'~1980 m',new_:false,lv:'mouchetées',d:'Espèce d\'altitude. Pétales très longs et tordus. Floraison séquentielle.'},
+  {id:'victoria_regina',subg:'cochlopetalum',n:'P. victoria-regina',full:'Paphiopedilum victoria-regina',com:'',o:'Indonésie (Sumatra, Java)',e:'790–1600 m',new_:false,lv:'mouchetées',d:'Grande espèce à hampe robuste portant les fleurs successivement sur une longue période.'},
+  // ═══ MEGASTAMINODIUM (1) ════════════════════════════════════════════
+  {id:'mastersianum',subg:'megastaminodium',n:'P. mastersianum',full:'Paphiopedilum mastersianum',com:'',o:'Indonésie (Moluques : Ambon, Seram, Buru)',e:'910–1800 m',new_:false,lv:'unies',d:'Grand staminode distinctif. Fleurs brun-vert à orange. Endémique aux Moluques. Seul représentant de son sous-genre.'},
+];
+
+// ── HARDCODED WIKIMEDIA PHOTO URLs ───────────────────────────────────────
+// Direct stable URLs from Wikimedia Commons (no CORS issues)
+function wm(file, size) {
+  // Build Wikimedia thumbnail URL from filename
+  // MD5 hash of filename gives the path prefix
+  const f = file.replace(/ /g,'_');
+  const hex = md5(f);
+  const a = hex[0], b = hex[0]+hex[1];
+  return `https://upload.wikimedia.org/wikipedia/commons/thumb/${a}/${b}/${encodeURIComponent(f)}/${size}px-${encodeURIComponent(f)}`;
+}
+// Simple MD5 for Wikimedia path calculation
+function md5(str){const r=[],c=[];for(let i=0;i<256;i++){let v=i;for(let j=0;j<8;j++)v=v&1?0xEDB88320^(v>>>1):v>>>1;c[i]=v}let h=0xFFFFFFFF;for(let i=0;i<str.length;i++)h=c[(h^str.charCodeAt(i))&0xFF]^(h>>>8);h=(h^0xFFFFFFFF)>>>0;return h.toString(16).padStart(8,'0')}
+// Note: real Wikimedia uses full MD5 — we use a lookup table instead
+const CARE = {
+  armeniacum: {temp:'Frais–Intermédiaire (10–22°C)',water:'Modéré, ne pas assécher',hum:'70–80%',light:'Faible–Moyen (ombre)',diff:'Difficile',sub:'Calcaire concassé + sphaigne + perlite. pH 7–7.5. Lithophyte calcicole.'},
+  delenatii: {temp:'Intermédiaire (15–25°C)',water:'Régulier, légèrement humide',hum:'70–80%',light:'Faible–Moyen',diff:'Facile–Intermédiaire',sub:'Ecorce fine + sphaigne + perlite. Bon drainage. pH 6–6.5.'},
+  emersonii: {temp:'Frais–Intermédiaire (10–22°C)',water:'Modéré, séchage partiel entre arrosages',hum:'70–80%',light:'Faible',diff:'Intermédiaire',sub:'Calcaire + sphaigne + perlite. pH 7–7.5.'},
+  hangianum: {temp:'Frais–Intermédiaire (10–22°C)',water:'Modéré',hum:'75–85%',light:'Faible–Moyen',diff:'Difficile',sub:'Calcaire concassé + sphaigne. Lithophyte. pH 7+.'},
+  malipoense: {temp:'Frais–Intermédiaire (10–22°C)',water:'Modéré, séchage partiel',hum:'70–80%',light:'Faible–Moyen',diff:'Intermédiaire',sub:'Calcaire + sphaigne + perlite. pH 7–7.5.'},
+  micranthum: {temp:'Frais–Intermédiaire (10–22°C)',water:'Modéré',hum:'70–80%',light:'Faible',diff:'Difficile',sub:'Calcaire concassé + sphaigne. Lithophyte calcicole. pH 7+.'},
+  vietnamense: {temp:'Frais–Intermédiaire (12–22°C)',water:'Modéré',hum:'75–85%',light:'Faible–Moyen',diff:'Très difficile',sub:'Calcaire + sphaigne + perlite. pH 7–7.5.'},
+  bellatulum: {temp:'Intermédiaire–Chaud (18–28°C)',water:'Modéré, séchage partiel',hum:'60–75%',light:'Faible–Moyen',diff:'Intermédiaire',sub:'Calcaire concassé + perlite + sphaigne. Lithophyte sur calcaire. pH 7–8.'},
+  concolor: {temp:'Intermédiaire–Chaud (18–28°C)',water:'Modéré, tolérant la sécheresse',hum:'60–75%',light:'Faible–Moyen',diff:'Facile',sub:'Calcaire concassé + perlite. Racines exposées. pH 7–8.'},
+  godefroyae: {temp:'Chaud (20–30°C)',water:'Modéré, séchage léger entre arrosages',hum:'65–75%',light:'Moyen',diff:'Intermédiaire',sub:'Calcaire + sable grossier + perlite. pH 7.5–8.'},
+  myanmaricum: {temp:'Intermédiaire–Chaud (18–27°C)',water:'Modéré',hum:'65–75%',light:'Faible–Moyen',diff:'Peu connue',sub:'Calcaire concassé + perlite + sphaigne. pH 7–7.5.'},
+  niveum: {temp:'Chaud (20–30°C)',water:'Modéré, séchage partiel',hum:'65–75%',light:'Moyen',diff:'Intermédiaire',sub:'Calcaire concassé + perlite + sable. pH 7.5–8. Aération des racines essentielle.'},
+  thaianum: {temp:'Frais–Intermédiaire (15–25°C)',water:'Modéré',hum:'70–80%',light:'Faible–Moyen',diff:'Peu connue',sub:'Calcaire + sphaigne + perlite. pH 7+.'},
+  trungkienii: {temp:'Intermédiaire (15–25°C)',water:'Modéré',hum:'70–80%',light:'Faible–Moyen',diff:'Peu connue',sub:'Calcaire + sphaigne + perlite. pH 7–7.5.'},
+  wenshanense: {temp:'Frais–Intermédiaire (12–22°C)',water:'Modéré',hum:'70–80%',light:'Faible–Moyen',diff:'Peu connue',sub:'Calcaire concassé + sphaigne. pH 7+.'},
+  adductum: {temp:'Intermédiaire–Chaud (18–27°C)',water:'Régulier, légèrement humide',hum:'65–80%',light:'Moyen–Fort (indirect)',diff:'Intermédiaire',sub:'Ecorce grossière + perlite + charbon. Très bon drainage.'},
+  dianthum: {temp:'Frais–Intermédiaire (12–22°C)',water:'Régulier',hum:'70–80%',light:'Faible–Moyen',diff:'Intermédiaire',sub:'Calcaire + sphaigne + perlite. Lithophyte. pH 7+.'},
+  gigantifolium: {temp:'Chaud (20–30°C)',water:'Abondant, substrat légèrement humide',hum:'70–85%',light:'Moyen',diff:'Intermédiaire',sub:'Ecorce grossière + perlite + sphaigne. Grand pot nécessaire.'},
+  glanduliferum: {temp:'Chaud (20–28°C)',water:'Abondant',hum:'70–80%',light:'Moyen',diff:'Intermédiaire',sub:'Ecorce + perlite + charbon. Bon drainage.'},
+  haynaldianum: {temp:'Intermédiaire–Chaud (18–27°C)',water:'Régulier',hum:'65–80%',light:'Moyen',diff:'Intermédiaire',sub:'Ecorce + perlite + sphaigne. Bon drainage. Pot de taille moyenne.'},
+  intaniae: {temp:'Intermédiaire (15–25°C)',water:'Régulier',hum:'70–80%',light:'Moyen',diff:'Peu connue',sub:'Ecorce + perlite + sphaigne.'},
+  kolopakingii: {temp:'Chaud (20–28°C)',water:'Abondant en croissance',hum:'70–80%',light:'Moyen',diff:'Intermédiaire',sub:'Ecorce grossière + perlite + charbon. Grand conteneur.'},
+  lowii: {temp:'Intermédiaire–Chaud (18–28°C)',water:'Régulier, humide en été',hum:'65–80%',light:'Moyen',diff:'Facile–Intermédiaire',sub:'Ecorce + perlite + sphaigne. Pot proportionnel aux racines.'},
+  ooii: {temp:'Intermédiaire (15–25°C)',water:'Régulier',hum:'70–80%',light:'Moyen',diff:'Peu connue',sub:'Ecorce + perlite + sphaigne.'},
+  parishii: {temp:'Frais–Intermédiaire (12–22°C)',water:'Modéré, séchage partiel en hiver',hum:'70–80%',light:'Faible–Moyen',diff:'Intermédiaire',sub:'Ecorce + perlite + calcaire. Préfère légèrement calcaire.'},
+  philippinense: {temp:'Chaud (20–30°C)',water:'Abondant en croissance',hum:'70–85%',light:'Moyen',diff:'Facile–Intermédiaire',sub:'Ecorce + perlite + charbon. Bon drainage essentiel.'},
+  platyphyllum: {temp:'Intermédiaire (15–25°C)',water:'Régulier',hum:'70–80%',light:'Moyen',diff:'Peu connue',sub:'Ecorce + perlite + sphaigne.'},
+  randsii: {temp:'Intermédiaire–Chaud (18–27°C)',water:'Régulier',hum:'70–80%',light:'Moyen',diff:'Intermédiaire',sub:'Ecorce + perlite.'},
+  rothschildianum: {temp:'Intermédiaire (15–25°C)',water:'Régulier, séchage partiel en hiver',hum:'65–80%',light:'Moyen–Fort (indirect)',diff:'Difficile (croissance très lente)',sub:'Ecorce grossière + perlite + charbon + calcaire. pH 6.5–7. Grand pot.'},
+  sanderianum: {temp:'Intermédiaire–Chaud (18–27°C)',water:'Régulier',hum:'70–80%',light:'Moyen',diff:'Intermédiaire',sub:'Ecorce grossière + perlite. Pot profond pour les longues racines.'},
+  stonei: {temp:'Intermédiaire–Chaud (18–27°C)',water:'Régulier',hum:'70–80%',light:'Moyen',diff:'Intermédiaire',sub:'Ecorce + perlite + sphaigne.'},
+  supardii: {temp:'Chaud (20–28°C)',water:'Régulier',hum:'70–80%',light:'Moyen',diff:'Intermédiaire',sub:'Ecorce + perlite + charbon.'},
+  wilhelminae: {temp:'Chaud (20–28°C)',water:'Abondant',hum:'75–85%',light:'Moyen',diff:'Peu connue',sub:'Ecorce + perlite + sphaigne.'},
+  acmodontum: {temp:'Intermédiaire (15–25°C)',water:'Régulier',hum:'65–80%',light:'Faible–Moyen',diff:'Intermédiaire',sub:'Ecorce fine + sphaigne + perlite. pH 6–6.5.'},
+  agusii: {temp:'Intermédiaire (15–25°C)',water:'Régulier',hum:'70–80%',light:'Faible–Moyen',diff:'Peu connue',sub:'Ecorce + sphaigne + perlite.'},
+  appletonianum: {temp:'Intermédiaire–Chaud (18–27°C)',water:'Régulier, ne pas assécher',hum:'65–80%',light:'Faible–Moyen',diff:'Facile',sub:'Ecorce fine + sphaigne + perlite. Substrat léger. pH 6–6.5.'},
+  argus: {temp:'Frais–Intermédiaire (12–22°C)',water:'Modéré, séchage partiel en hiver',hum:'70–80%',light:'Faible',diff:'Intermédiaire',sub:'Ecorce fine + sphaigne + perlite. Aime le frais.'},
+  barbatum: {temp:'Intermédiaire (15–25°C)',water:'Régulier',hum:'65–80%',light:'Faible–Moyen',diff:'Facile',sub:'Ecorce fine + sphaigne + perlite. Classique. pH 6–6.5.'},
+  braemii: {temp:'Intermédiaire (15–25°C)',water:'Régulier',hum:'70–80%',light:'Faible–Moyen',diff:'Peu connue',sub:'Ecorce + sphaigne + perlite.'},
+  bougainvilleanum: {temp:'Intermédiaire (15–25°C)',water:'Régulier',hum:'70–80%',light:'Faible–Moyen',diff:'Peu connue',sub:'Ecorce + sphaigne + perlite.'},
+  bullenianum: {temp:'Intermédiaire–Chaud (18–27°C)',water:'Régulier',hum:'65–80%',light:'Faible–Moyen',diff:'Facile',sub:'Ecorce + sphaigne + perlite. Tolérant.'},
+  bungebelangii: {temp:'Frais–Intermédiaire (12–22°C)',water:'Modéré',hum:'75–85%',light:'Faible–Moyen',diff:'Peu connue',sub:'Ecorce fine + sphaigne + perlite. Altitude.'},
+  callosum: {temp:'Intermédiaire–Chaud (18–27°C)',water:'Régulier, ne jamais assécher',hum:'65–80%',light:'Faible–Moyen',diff:'Facile — idéal débutant',sub:'Ecorce fine + sphaigne + perlite. Très tolérant. pH 6–6.5.'},
+  ciliolare: {temp:'Intermédiaire–Chaud (18–27°C)',water:'Régulier',hum:'70–80%',light:'Faible–Moyen',diff:'Intermédiaire',sub:'Ecorce + sphaigne + perlite.'},
+  dayanum: {temp:'Intermédiaire (15–25°C)',water:'Modéré',hum:'70–80%',light:'Faible',diff:'Intermédiaire',sub:'Ecorce fine + sphaigne + perlite. Aime la fraîcheur.'},
+  fowliei: {temp:'Intermédiaire (15–25°C)',water:'Régulier',hum:'70–80%',light:'Faible–Moyen',diff:'Intermédiaire',sub:'Ecorce + sphaigne + perlite.'},
+  hennisianum: {temp:'Intermédiaire–Chaud (18–27°C)',water:'Régulier',hum:'65–80%',light:'Faible–Moyen',diff:'Intermédiaire',sub:'Ecorce + sphaigne + perlite.'},
+  hookerae: {temp:'Intermédiaire (15–25°C)',water:'Modéré',hum:'70–80%',light:'Faible–Moyen',diff:'Intermédiaire',sub:'Ecorce + sphaigne + perlite. Bon drainage.'},
+  javanicum: {temp:'Frais–Intermédiaire (12–22°C)',water:'Modéré',hum:'70–80%',light:'Faible',diff:'Intermédiaire',sub:'Ecorce fine + sphaigne + perlite. Préfère le frais.'},
+  lawrenceanum: {temp:'Intermédiaire (15–25°C)',water:'Régulier',hum:'65–80%',light:'Faible–Moyen',diff:'Facile–Intermédiaire',sub:'Ecorce fine + sphaigne + perlite. pH 6–6.5.'},
+  lunatum: {temp:'Frais–Intermédiaire (12–22°C)',water:'Modéré',hum:'75–85%',light:'Faible–Moyen',diff:'Peu connue',sub:'Ecorce + sphaigne + perlite.'},
+  nataschae: {temp:'Intermédiaire (15–25°C)',water:'Régulier',hum:'70–80%',light:'Faible–Moyen',diff:'Peu connue',sub:'Ecorce + sphaigne + perlite.'},
+  papuanum: {temp:'Intermédiaire–Chaud (18–27°C)',water:'Régulier',hum:'70–80%',light:'Faible–Moyen',diff:'Intermédiaire',sub:'Ecorce + sphaigne + perlite.'},
+  parnatanum: {temp:'Intermédiaire (15–25°C)',water:'Régulier',hum:'70–80%',light:'Faible–Moyen',diff:'Peu connue',sub:'Ecorce + sphaigne + perlite.'},
+  purpuratum: {temp:'Frais–Intermédiaire (12–22°C)',water:'Modéré, séchage partiel en hiver',hum:'70–80%',light:'Faible',diff:'Intermédiaire',sub:'Ecorce fine + sphaigne + perlite. Frais hivernal important.'},
+  qingyongii: {temp:'Frais (8–20°C)',water:'Modéré',hum:'75–85%',light:'Faible',diff:'Très difficile',sub:'Ecorce + sphaigne + perlite. Froid hivernal essentiel.'},
+  robinsonianum: {temp:'Intermédiaire (15–25°C)',water:'Régulier',hum:'70–80%',light:'Faible–Moyen',diff:'Peu connue',sub:'Ecorce + sphaigne + perlite.'},
+  rohmanii: {temp:'Intermédiaire (15–25°C)',water:'Régulier',hum:'70–80%',light:'Faible–Moyen',diff:'Peu connue',sub:'Ecorce + sphaigne + perlite.'},
+  sandyanum: {temp:'Intermédiaire–Chaud (18–27°C)',water:'Régulier',hum:'70–80%',light:'Faible–Moyen',diff:'Peu connue',sub:'Ecorce + sphaigne + perlite.'},
+  sangii: {temp:'Frais–Intermédiaire (12–22°C)',water:'Modéré',hum:'70–80%',light:'Faible–Moyen',diff:'Intermédiaire',sub:'Ecorce + sphaigne + perlite. Aime la fraîcheur.'},
+  schoseri: {temp:'Intermédiaire (15–25°C)',water:'Régulier',hum:'70–80%',light:'Faible–Moyen',diff:'Intermédiaire',sub:'Ecorce + sphaigne + perlite.'},
+  sugiyamanum: {temp:'Intermédiaire (15–25°C)',water:'Régulier',hum:'70–80%',light:'Faible–Moyen',diff:'Peu connue',sub:'Ecorce + sphaigne + perlite.'},
+  sukhakulii: {temp:'Intermédiaire (15–25°C)',water:'Régulier',hum:'65–80%',light:'Faible–Moyen',diff:'Facile — idéal débutant',sub:'Ecorce fine + sphaigne + perlite. Très tolérant. pH 6–6.5.'},
+  superbiens: {temp:'Intermédiaire (15–25°C)',water:'Régulier',hum:'70–80%',light:'Faible–Moyen',diff:'Intermédiaire',sub:'Ecorce fine + sphaigne + perlite.'},
+  tonsum: {temp:'Intermédiaire (15–25°C)',water:'Régulier',hum:'70–80%',light:'Faible–Moyen',diff:'Intermédiaire',sub:'Ecorce + sphaigne + perlite.'},
+  urbanianum: {temp:'Intermédiaire (15–25°C)',water:'Régulier',hum:'70–80%',light:'Faible–Moyen',diff:'Intermédiaire',sub:'Ecorce + sphaigne + perlite.'},
+  venustum: {temp:'Frais–Intermédiaire (10–22°C)',water:'Modéré, séchage partiel en hiver',hum:'65–80%',light:'Faible–Moyen',diff:'Facile',sub:'Ecorce fine + sphaigne + perlite. Tolère variations de T°.'},
+  violascens: {temp:'Intermédiaire–Chaud (18–27°C)',water:'Régulier',hum:'70–80%',light:'Faible–Moyen',diff:'Intermédiaire',sub:'Ecorce + sphaigne + perlite.'},
+  wardii: {temp:'Frais–Intermédiaire (12–22°C)',water:'Modéré, séchage partiel en hiver',hum:'70–80%',light:'Faible',diff:'Intermédiaire',sub:'Ecorce fine + sphaigne + perlite. Frais hivernal stimulant.'},
+  wentworthianum: {temp:'Intermédiaire (15–25°C)',water:'Régulier',hum:'70–80%',light:'Faible–Moyen',diff:'Peu connue',sub:'Ecorce + sphaigne + perlite.'},
+  zulhermanianum: {temp:'Intermédiaire (15–25°C)',water:'Régulier',hum:'70–80%',light:'Faible–Moyen',diff:'Peu connue',sub:'Ecorce + sphaigne + perlite.'},
+  barbigerum: {temp:'Frais–Intermédiaire (10–22°C)',water:'Modéré, séchage partiel',hum:'65–80%',light:'Faible–Moyen',diff:'Facile',sub:'Calcaire + sphaigne + perlite. Lithophyte. pH 7–7.5.'},
+  charlesworthii: {temp:'Frais–Intermédiaire (10–22°C)',water:'Modéré, séchage en hiver',hum:'65–75%',light:'Moyen (plus lumineux que la moyenne)',diff:'Intermédiaire',sub:'Ecorce + perlite + calcaire. pH 6.5–7. Repos hivernal frais et sec.'},
+  coccineum: {temp:'Intermédiaire (15–25°C)',water:'Régulier',hum:'70–80%',light:'Faible–Moyen',diff:'Peu connue',sub:'Ecorce + sphaigne + perlite.'},
+  druryi: {temp:'Frais–Intermédiaire (10–22°C)',water:'Modéré',hum:'65–75%',light:'Moyen',diff:'Très difficile — quasi éteinte',sub:'Ecorce fine + perlite + sphaigne. Froid hivernal. pH 6.5.'},
+  erythroanthum: {temp:'Frais–Intermédiaire (10–22°C)',water:'Modéré',hum:'65–75%',light:'Faible–Moyen',diff:'Peu connue',sub:'Calcaire + sphaigne + perlite.'},
+  exul: {temp:'Chaud (20–30°C)',water:'Abondant en croissance, réduire en hiver',hum:'65–75%',light:'Moyen–Fort',diff:'Intermédiaire',sub:'Calcaire + sable grossier + perlite. Lithophyte côtière. pH 7.5–8.'},
+  fairrieanum: {temp:'Frais (8–20°C)',water:'Modéré, séchage partiel en hiver',hum:'65–75%',light:'Moyen',diff:'Intermédiaire',sub:'Ecorce + perlite + calcaire. Froid hivernal indispensable (8–12°C). pH 6.5–7.'},
+  gratrixianum: {temp:'Frais–Intermédiaire (12–22°C)',water:'Modéré, séchage partiel',hum:'65–75%',light:'Moyen–Fort',diff:'Intermédiaire',sub:'Ecorce + perlite. Repos hivernal frais et lumières plus fortes.'},
+  helenae: {temp:'Frais–Intermédiaire (12–22°C)',water:'Modéré',hum:'70–80%',light:'Faible',diff:'Intermédiaire–Difficile',sub:'Ecorce très fine + sphaigne + perlite. Miniature, petit pot.'},
+  henryanum: {temp:'Frais–Intermédiaire (10–22°C)',water:'Modéré',hum:'65–80%',light:'Faible–Moyen',diff:'Intermédiaire',sub:'Calcaire + sphaigne + perlite. pH 7–7.5.'},
+  herrmannii: {temp:'Intermédiaire (15–25°C)',water:'Régulier',hum:'70–80%',light:'Faible–Moyen',diff:'Peu connue',sub:'Ecorce fine + sphaigne + perlite.'},
+  hirsutissimum: {temp:'Frais–Intermédiaire (10–22°C)',water:'Modéré, séchage partiel en hiver',hum:'65–80%',light:'Moyen',diff:'Intermédiaire',sub:'Ecorce + sphaigne + perlite + calcaire. Repos frais hivernal. pH 6.5–7.'},
+  insigne: {temp:'Frais–Intermédiaire (8–22°C)',water:'Modéré, séchage partiel en hiver',hum:'60–75%',light:'Moyen',diff:'Très facile — idéal débutant',sub:'Ecorce + perlite + sphaigne. Tolère beaucoup. Froid hivernal stimulant. pH 6–6.5.'},
+  notatisepalum: {temp:'Frais–Intermédiaire (10–22°C)',water:'Modéré',hum:'65–75%',light:'Faible–Moyen',diff:'Peu connue',sub:'Calcaire + sphaigne + perlite.'},
+  papiolaoticus: {temp:'Intermédiaire (15–25°C)',water:'Régulier',hum:'70–80%',light:'Faible–Moyen',diff:'Peu connue',sub:'Ecorce + sphaigne + perlite.'},
+  spicerianum: {temp:'Frais–Intermédiaire (10–22°C)',water:'Modéré, séchage partiel en hiver',hum:'65–75%',light:'Moyen',diff:'Intermédiaire',sub:'Ecorce + perlite + sphaigne. Froid hivernal (10–12°C) indispensable. pH 6.5.'},
+  stenolomum: {temp:'Frais–Intermédiaire (10–22°C)',water:'Modéré',hum:'65–75%',light:'Faible–Moyen',diff:'Peu connue',sub:'Calcaire + sphaigne + perlite.'},
+  tigrinum: {temp:'Frais–Intermédiaire (10–22°C)',water:'Modéré, séchage partiel',hum:'65–75%',light:'Moyen',diff:'Intermédiaire',sub:'Ecorce + calcaire + perlite. pH 6.5–7. Repos frais hivernal.'},
+  tranlienianum: {temp:'Intermédiaire (15–25°C)',water:'Régulier',hum:'70–80%',light:'Faible–Moyen',diff:'Peu connue',sub:'Ecorce + sphaigne + perlite.'},
+  vejvarutianum: {temp:'Intermédiaire (15–25°C)',water:'Régulier',hum:'70–80%',light:'Faible–Moyen',diff:'Peu connue',sub:'Ecorce + sphaigne + perlite.'},
+  villosum: {temp:'Frais–Intermédiaire (10–22°C)',water:'Modéré, séchage partiel en hiver',hum:'60–75%',light:'Moyen–Fort',diff:'Facile',sub:'Ecorce + perlite + sphaigne. Froid hivernal stimulant pour la floraison. pH 6–6.5.'},
+  dodyanum: {temp:'Intermédiaire (15–25°C)',water:'Régulier, substrat humide',hum:'70–80%',light:'Faible–Moyen',diff:'Peu connue',sub:'Ecorce fine + sphaigne + perlite.'},
+  glaucophyllum: {temp:'Intermédiaire–Chaud (18–27°C)',water:'Régulier, ne jamais assécher',hum:'70–80%',light:'Faible–Moyen',diff:'Facile',sub:'Ecorce fine + sphaigne. Maintenir légèrement humide en permanence. pH 6–6.5.'},
+  liemianum: {temp:'Intermédiaire–Chaud (18–27°C)',water:'Régulier, humide',hum:'70–80%',light:'Faible–Moyen',diff:'Facile',sub:'Ecorce fine + sphaigne. Humidité constante. pH 6–6.5.'},
+  moquetteanum: {temp:'Intermédiaire–Chaud (18–27°C)',water:'Régulier',hum:'70–80%',light:'Faible–Moyen',diff:'Intermédiaire',sub:'Ecorce + sphaigne + perlite.'},
+  primulinum: {temp:'Chaud (20–30°C)',water:'Abondant, humide en permanence',hum:'70–85%',light:'Faible–Moyen',diff:'Facile',sub:'Ecorce fine + sphaigne. Humidité constante. Ne jamais laisser sécher. pH 6–6.5.'},
+  victoria_mariae: {temp:'Frais–Intermédiaire (12–22°C)',water:'Régulier',hum:'70–80%',light:'Faible–Moyen',diff:'Intermédiaire',sub:'Ecorce + sphaigne + perlite. Altitude fraîche.'},
+  victoria_regina: {temp:'Intermédiaire (15–25°C)',water:'Régulier, humide',hum:'70–80%',light:'Faible–Moyen',diff:'Intermédiaire',sub:'Ecorce + sphaigne + perlite. Substrat légèrement humide.'},
+  mastersianum: {temp:'Intermédiaire–Chaud (18–27°C)',water:'Régulier, humide en croissance',hum:'65–80%',light:'Faible–Moyen',diff:'Intermédiaire',sub:'Ecorce grossière + perlite + sphaigne. Bon drainage. pH 6–6.5.'},
+};
+
+const PHOTOS = {}; // Chargé depuis paph_photos.js
+
+
+// ── PHOTO CACHE — hardcoded + localStorage overrides ─────────────────────
+const photoCache = {};
+
+function loadAllPhotos() {
+  // 1. Load hardcoded URLs
+  SP.forEach(sp => {
+    const url = PHOTOS[sp.id];
+    photoCache[sp.id] = url ? { thumb: url, full: url.replace('320px','800px'), credit:'Wikimedia Commons', creditUrl:'https://commons.wikimedia.org' } : null;
+  });
+  // 2. Override with any user-saved photos from localStorage
+  try {
+    const saved = JSON.parse(localStorage.getItem('paph_photos') || '{}');
+    Object.entries(saved).forEach(([id, url]) => {
+      if (url) photoCache[id] = { thumb: url, full: url, credit:'Photo personnelle', creditUrl:'' };
+    });
+  } catch(e) {}
+  // 3. Update status bar
+  const bar = document.getElementById('progBar');
+  const lbl = document.getElementById('progLbl');
+  const total = SP.length;
+  const withPhoto = SP.filter(s => photoCache[s.id]).length;
+  bar.style.width = Math.round(withPhoto/total*100)+'%';
+  lbl.textContent = `${withPhoto} / ${total} photos`;
+  document.querySelector('.photo-bar span').textContent = `📸 ${withPhoto} photos · cliquez ➕ pour en ajouter`;
+}
+
+function saveUserPhoto(id, url) {
+  try {
+    const saved = JSON.parse(localStorage.getItem('paph_photos') || '{}');
+    if (url) saved[id] = url; else delete saved[id];
+    localStorage.setItem('paph_photos', JSON.stringify(saved));
+  } catch(e) {}
+}
+
+function addPhoto(id, e) {
+  if (e) e.stopPropagation();
+  const sp = SP.find(s => s.id === id);
+  if (!sp) return;
+  const existing = photoCache[id]?.thumb || '';
+
+  const overlay = document.createElement('div');
+  overlay.id = 'photo-overlay';
+  overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:2000;display:flex;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(5px)';
+
+  overlay.innerHTML = `
+    <div style="background:#f4f0e6;border-radius:14px;padding:1.8rem;max-width:500px;width:100%;box-shadow:0 24px 70px rgba(0,0,0,.45)">
+      <h3 style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.4rem;margin-bottom:.25rem;color:#0d1810">${sp.full}</h3>
+      <p style="font-size:.8rem;color:#637060;margin-bottom:1.2rem">Choisis une méthode pour ajouter une photo</p>
+
+      <!-- TABS -->
+      <div style="display:flex;gap:0;border:1.5px solid #c5b898;border-radius:8px;overflow:hidden;margin-bottom:1.2rem">
+        <button onclick="switchTab('paste')" id="tab-paste" style="flex:1;padding:.5rem;font-family:'Jost',sans-serif;font-size:.8rem;font-weight:500;cursor:pointer;border:none;background:#2a5c42;color:#fff;transition:all .2s">
+          📋 Coller (Ctrl+V)
+        </button>
+        <button onclick="switchTab('file')" id="tab-file" style="flex:1;padding:.5rem;font-family:'Jost',sans-serif;font-size:.8rem;font-weight:500;cursor:pointer;border:none;background:transparent;color:#637060;transition:all .2s">
+          📁 Fichier
+        </button>
+        <button onclick="switchTab('url')" id="tab-url" style="flex:1;padding:.5rem;font-family:'Jost',sans-serif;font-size:.8rem;font-weight:500;cursor:pointer;border:none;background:transparent;color:#637060;transition:all .2s">
+          🔗 URL
+        </button>
+      </div>
+
+      <!-- PASTE PANEL -->
+      <div id="panel-paste">
+        <div id="paste-zone" style="border:2px dashed #c5b898;border-radius:10px;padding:2rem 1rem;text-align:center;cursor:pointer;transition:all .2s;background:#fff;min-height:120px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem"
+          onclick="this.focus()" tabindex="0">
+          <div style="font-size:2rem">📋</div>
+          <div style="font-size:.9rem;font-weight:500;color:#1a2e1e">Clique ici puis colle ton image</div>
+          <div style="font-size:.75rem;color:#8a9a88">Ctrl+V (Windows) · Cmd+V (Mac)</div>
+          <div style="font-size:.72rem;color:#aab8a8;margin-top:.3rem">Fonctionne depuis Google Images, sites d'orchidées, ton explorateur de fichiers…</div>
+        </div>
+        <div id="paste-preview" style="display:none;margin-top:.8rem;text-align:center">
+          <img id="paste-img" style="max-height:160px;max-width:100%;border-radius:8px;object-fit:contain">
+          <p style="font-size:.75rem;color:#2a5c42;margin-top:.4rem">✓ Image prête</p>
+        </div>
+      </div>
+
+      <!-- FILE PANEL -->
+      <div id="panel-file" style="display:none">
+        <label style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;border:2px dashed #c5b898;border-radius:10px;padding:2rem 1rem;cursor:pointer;background:#fff;min-height:120px;text-align:center">
+          <div style="font-size:2rem">📁</div>
+          <div style="font-size:.9rem;font-weight:500;color:#1a2e1e">Clique pour choisir un fichier</div>
+          <div style="font-size:.75rem;color:#8a9a88">JPG, PNG, WEBP — depuis ton ordi ou téléphone</div>
+          <input type="file" accept="image/*" onchange="handleFile(this)" style="display:none">
+        </label>
+        <div id="file-preview" style="display:none;margin-top:.8rem;text-align:center">
+          <img id="file-img" style="max-height:160px;max-width:100%;border-radius:8px;object-fit:contain">
+          <p style="font-size:.75rem;color:#2a5c42;margin-top:.4rem">✓ Image prête</p>
+        </div>
+      </div>
+
+      <!-- URL PANEL -->
+      <div id="panel-url" style="display:none">
+        <input id="url-input" type="url" placeholder="https://upload.wikimedia.org/…"
+          style="width:100%;padding:.6rem .9rem;border:1.5px solid #c5b898;border-radius:8px;font-size:.88rem;font-family:'Jost',sans-serif;outline:none;margin-bottom:.5rem"
+          oninput="previewUrl(this.value)">
+        <div id="url-preview" style="display:none;text-align:center;margin-bottom:.5rem">
+          <img id="url-img" style="max-height:140px;max-width:100%;border-radius:8px;object-fit:contain">
+        </div>
+        <p style="font-size:.72rem;color:#9aaa98">✅ Fonctionne avec : Wikimedia Commons, iNaturalist, Flickr (lien direct .jpg)</p>
+      </div>
+
+      ${existing ? `
+        <div style="margin-top:.8rem;padding:.6rem;background:#fff;border-radius:8px;border:1px solid #c5b898;display:flex;align-items:center;gap:.7rem">
+          <img src="${existing}" style="width:48px;height:48px;border-radius:5px;object-fit:cover" onerror="this.style.display='none'">
+          <div style="flex:1;font-size:.78rem;color:#637060">Photo actuelle</div>
+          <button onclick="removePhoto('${id}');document.getElementById('photo-overlay').remove()" style="font-size:.72rem;color:#c0392b;background:none;border:none;cursor:pointer;font-family:'Jost',sans-serif;padding:.2rem .4rem">🗑 Supprimer</button>
+        </div>` : ''}
+
+      <div style="display:flex;gap:.6rem;justify-content:flex-end;margin-top:1.1rem">
+        <button onclick="document.getElementById('photo-overlay').remove()" style="padding:.45rem 1rem;border:1.5px solid #c5b898;border-radius:6px;background:transparent;font-family:'Jost',sans-serif;font-size:.85rem;cursor:pointer;color:#637060">Annuler</button>
+        <button id="save-photo-btn" onclick="savePhotoFromDialog('${id}')" style="padding:.45rem 1.2rem;border:none;border-radius:6px;background:#2a5c42;color:#fff;font-family:'Jost',sans-serif;font-size:.85rem;cursor:pointer;font-weight:500">✓ Enregistrer</button>
+      </div>
+    </div>`;
+
+  document.body.appendChild(overlay);
+  overlay.addEventListener('click', ev => { if (ev.target === overlay) overlay.remove(); });
+
+  // Activate paste zone
+  const pasteZone = overlay.querySelector('#paste-zone');
+  pasteZone.focus();
+
+  // Listen for paste on the whole overlay
+  overlay.addEventListener('paste', ev => {
+    const items = ev.clipboardData?.items;
+    if (!items) return;
+    for (const item of items) {
+      if (item.type.startsWith('image/')) {
+        ev.preventDefault();
+        const blob = item.getAsFile();
+        const reader = new FileReader();
+        reader.onload = e => {
+          window._pendingPhoto = { data: e.target.result, type: 'base64' };
+          const preview = overlay.querySelector('#paste-preview');
+          const img = overlay.querySelector('#paste-img');
+          img.src = e.target.result;
+          preview.style.display = 'block';
+          overlay.querySelector('#paste-zone').style.border = '2px solid #2a5c42';
+          overlay.querySelector('#paste-zone').style.background = '#edf5f0';
+        };
+        reader.readAsDataURL(blob);
+        return;
+      }
+    }
+    // Maybe pasted text URL
+    const text = ev.clipboardData?.getData('text');
+    if (text && text.startsWith('http')) {
+      switchTab('url');
+      overlay.querySelector('#url-input').value = text;
+      previewUrl(text);
+    }
+  });
+}
+
+let _currentTab = 'paste';
+window._pendingPhoto = null;
+
+function switchTab(tab) {
+  _currentTab = tab;
+  window._pendingPhoto = null;
+  ['paste','file','url'].forEach(t => {
+    const panel = document.getElementById('panel-'+t);
+    const tabBtn = document.getElementById('tab-'+t);
+    if (panel) panel.style.display = t===tab ? 'block' : 'none';
+    if (tabBtn) {
+      tabBtn.style.background = t===tab ? '#2a5c42' : 'transparent';
+      tabBtn.style.color = t===tab ? '#fff' : '#637060';
+    }
+  });
+}
+
+function handleFile(input) {
+  const file = input.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    window._pendingPhoto = { data: e.target.result, type: 'base64' };
+    const preview = document.getElementById('file-preview');
+    const img = document.getElementById('file-img');
+    img.src = e.target.result;
+    preview.style.display = 'block';
+  };
+  reader.readAsDataURL(file);
+}
+
+function previewUrl(url) {
+  if (!url || !url.startsWith('http')) return;
+  window._pendingPhoto = { data: url, type: 'url' };
+  const preview = document.getElementById('url-preview');
+  const img = document.getElementById('url-img');
+  img.src = url;
+  img.onerror = () => { preview.style.display = 'none'; };
+  img.onload = () => { preview.style.display = 'block'; };
+}
+
+function savePhotoFromDialog(id) {
+  let finalUrl = null;
+  if (_currentTab === 'url') {
+    const urlInput = document.getElementById('url-input');
+    if (urlInput && urlInput.value.trim().startsWith('http')) {
+      finalUrl = urlInput.value.trim();
+    }
+  } else if (window._pendingPhoto) {
+    finalUrl = window._pendingPhoto.data;
+  }
+  if (!finalUrl) {
+    const btn = document.getElementById('save-photo-btn');
+    btn.textContent = '⚠ Aucune image';
+    setTimeout(() => btn.textContent = '✓ Enregistrer', 1500);
+    return;
+  }
+  saveUserPhoto(id, finalUrl);
+  photoCache[id] = { thumb: finalUrl, full: finalUrl, credit: 'Photo personnelle', creditUrl: '' };
+  document.getElementById('photo-overlay').remove();
+  render();
+  loadAllPhotos();
+}
+
+function removePhoto(id, overlay) {
+  saveUserPhoto(id, null);
+  photoCache[id] = null;
+  overlay.remove();
+  render();
+  loadAllPhotos();
+}
+
+// ── COLLECTION ────────────────────────────────────────────────────────────
+let myCollection = new Set();
+let showOnlyOwned = false;
+
+function loadCollection() {
+  try {
+    const saved = JSON.parse(localStorage.getItem('paph_collection') || '[]');
+    myCollection = new Set(saved);
+  } catch(e) { myCollection = new Set(); }
+  updateCollBar();
+}
+
+function saveCollection() {
+  try { localStorage.setItem('paph_collection', JSON.stringify([...myCollection])); } catch(e) {}
+}
+
+function toggleOwn(id, e) {
+  if (e) e.stopPropagation();
+  if (myCollection.has(id)) myCollection.delete(id);
+  else myCollection.add(id);
+  saveCollection();
+  updateCollBar();
+  render();
+  // Also refresh modal collect button if open
+  const btn = document.getElementById('modal-collect-'+id);
+  if (btn) refreshModalCollBtn(btn, id);
+}
+
+function updateCollBar() {
+  const n = myCollection.size;
+  document.getElementById('collCount').textContent = `${n} orchidée${n>1?'s':''}`;
+}
+
+function toggleCollFilter(btn) {
+  showOnlyOwned = !showOnlyOwned;
+  btn.classList.toggle('active', showOnlyOwned);
+  btn.textContent = showOnlyOwned ? '✕ Toutes les espèces' : '🔍 Voir ma collection';
+  render();
+}
+
+function refreshModalCollBtn(btn, id) {
+  const owned = myCollection.has(id);
+  btn.className = 'modal-collect-btn ' + (owned ? 'owned' : 'notowned');
+  btn.innerHTML = owned ? '✓ Dans ma collection · cliquer pour retirer' : '＋ Ajouter à ma collection';
+}
+
+// ── EXPORT / IMPORT ──────────────────────────────────────────────────────
+function exportData() {
+  try {
+    const photos = JSON.parse(localStorage.getItem('paph_photos') || '{}');
+    const collection = JSON.parse(localStorage.getItem('paph_collection') || '[]');
+    const data = { version:1, date:new Date().toISOString().split('T')[0], collection, photos };
+    const json = JSON.stringify(data);
+
+    // Show dialog with text to copy
+    const overlay = document.createElement('div');
+    overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:3000;display:flex;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(4px)';
+    overlay.innerHTML = `
+      <div style="background:#f4f0e6;border-radius:14px;padding:1.8rem;max-width:520px;width:100%;box-shadow:0 24px 70px rgba(0,0,0,.4)">
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;margin-bottom:.4rem">💾 Exporter ma collection</h3>
+        <p style="font-size:.82rem;color:#637060;margin-bottom:.8rem">${collection.length} orchidées · ${Object.keys(photos).length} photos perso</p>
+        <p style="font-size:.8rem;color:#1a3a28;margin-bottom:.5rem;font-weight:500">① Appuie longuement dans la zone ci-dessous → "Tout sélectionner" → "Copier"</p>
+        <textarea id="export-text" readonly style="width:100%;height:120px;padding:.6rem;font-family:monospace;font-size:.65rem;border:1.5px solid #c5b898;border-radius:8px;resize:none;background:#fff;color:#333">${json}</textarea>
+        <p style="font-size:.8rem;color:#1a3a28;margin-top:.7rem;font-weight:500">② Colle ce texte dans Notes, Mail ou iCloud — puis importe-le sur l'autre appareil</p>
+        <div style="display:flex;gap:.6rem;margin-top:1rem;justify-content:flex-end">
+          <button onclick="this.closest('div[style]').remove()" style="padding:.45rem 1rem;border:1.5px solid #c5b898;border-radius:6px;background:transparent;font-family:'Jost',sans-serif;font-size:.85rem;cursor:pointer;color:#637060">Fermer</button>
+          <button onclick="copyExport()" id="copy-btn" style="padding:.45rem 1.2rem;border:none;border-radius:6px;background:#2a5c42;color:#fff;font-family:'Jost',sans-serif;font-size:.85rem;cursor:pointer;font-weight:500">📋 Copier</button>
+        </div>
+      </div>`;
+    document.body.appendChild(overlay);
+    overlay.addEventListener('click', e => { if(e.target===overlay) overlay.remove(); });
+    // Auto-select text
+    setTimeout(() => {
+      const ta = document.getElementById('export-text');
+      if (ta) { ta.focus(); ta.select(); }
+    }, 100);
+  } catch(e) {
+    showToast('❌ Erreur : ' + e.message);
+  }
+}
+
+function copyExport() {
+  const ta = document.getElementById('export-text');
+  if (!ta) return;
+  ta.select();
+  const btn = document.getElementById('copy-btn');
+  try {
+    navigator.clipboard.writeText(ta.value).then(() => {
+      if(btn) { btn.textContent = '✓ Copié !'; btn.style.background='#155724'; }
+    }).catch(() => {
+      document.execCommand('copy');
+      if(btn) { btn.textContent = '✓ Copié !'; btn.style.background='#155724'; }
+    });
+  } catch(e) {
+    document.execCommand('copy');
+    if(btn) { btn.textContent = '✓ Copié !'; btn.style.background='#155724'; }
+  }
+}
+
+function importData(input) {
+  // Called via file input - but also show paste dialog
+  if (input && input.files && input.files[0]) {
+    const reader = new FileReader();
+    reader.onload = e => applyImport(e.target.result);
+    reader.readAsText(input.files[0]);
+    input.value = '';
+    return;
+  }
+}
+
+function showImportDialog() {
+  const overlay = document.createElement('div');
+  overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:3000;display:flex;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(4px)';
+  overlay.innerHTML = `
+    <div style="background:#f4f0e6;border-radius:14px;padding:1.8rem;max-width:520px;width:100%;box-shadow:0 24px 70px rgba(0,0,0,.4)">
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;margin-bottom:.4rem">📂 Importer une sauvegarde</h3>
+      <p style="font-size:.8rem;color:#1a3a28;margin-bottom:.5rem;font-weight:500">Colle ici le texte copié depuis l'autre appareil :</p>
+      <textarea id="import-text" placeholder="Colle ton texte de sauvegarde ici…" style="width:100%;height:140px;padding:.6rem;font-family:monospace;font-size:.65rem;border:1.5px solid #c5b898;border-radius:8px;resize:none;background:#fff;color:#333"></textarea>
+      <p style="font-size:.75rem;color:#637060;margin-top:.4rem">Les données existantes seront fusionnées (rien ne sera supprimé)</p>
+      <div style="display:flex;gap:.6rem;margin-top:1rem;justify-content:flex-end">
+        <button onclick="this.closest('div[style]').remove()" style="padding:.45rem 1rem;border:1.5px solid #c5b898;border-radius:6px;background:transparent;font-family:'Jost',sans-serif;font-size:.85rem;cursor:pointer;color:#637060">Annuler</button>
+        <button onclick="doImport()" style="padding:.45rem 1.2rem;border:none;border-radius:6px;background:#2a5c42;color:#fff;font-family:'Jost',sans-serif;font-size:.85rem;cursor:pointer;font-weight:500">✓ Importer</button>
+      </div>
+    </div>`;
+  document.body.appendChild(overlay);
+  overlay.addEventListener('click', e => { if(e.target===overlay) overlay.remove(); });
+  setTimeout(() => document.getElementById('import-text')?.focus(), 100);
+}
+
+function doImport() {
+  const ta = document.getElementById('import-text');
+  if (!ta || !ta.value.trim()) return;
+  applyImport(ta.value.trim());
+  ta.closest('div[style]').remove();
+}
+
+function applyImport(text) {
+  try {
+    const data = JSON.parse(text);
+    if (!data.version || !data.collection) throw new Error('Format invalide');
+    const existing = JSON.parse(localStorage.getItem('paph_collection') || '[]');
+    const existingPhotos = JSON.parse(localStorage.getItem('paph_photos') || '{}');
+    const merged = [...new Set([...existing, ...data.collection])];
+    const mergedPhotos = { ...existingPhotos, ...(data.photos||{}) };
+    localStorage.setItem('paph_collection', JSON.stringify(merged));
+    localStorage.setItem('paph_photos', JSON.stringify(mergedPhotos));
+    loadCollection();
+    loadAllPhotos();
+    render();
+    showToast(`✓ Import réussi — ${data.collection.length} orchidées, ${Object.keys(data.photos||{}).length} photos`);
+  } catch(err) {
+    showToast('❌ Texte invalide. Vérifie que tu as tout copié : ' + err.message);
+  }
+}
+
+function showToast(msg) {
+  const t = document.createElement('div');
+  t.textContent = msg;
+  t.style.cssText = `position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);
+    background:#1a3a28;color:#6dd4a0;padding:.6rem 1.2rem;border-radius:20px;
+    font-family:'Jost',sans-serif;font-size:.85rem;font-weight:500;
+    box-shadow:0 4px 20px rgba(0,0,0,.3);z-index:9999;
+    animation:fadeInUp .3s ease;white-space:nowrap`;
+  document.body.appendChild(t);
+  setTimeout(() => t.style.opacity = '0', 2500);
+  setTimeout(() => t.remove(), 3000);
+}
+// Add fadeInUp animation
+const toastStyle = document.createElement('style');
+toastStyle.textContent = '@keyframes fadeInUp{from{opacity:0;transform:translateX(-50%) translateY(10px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}';
+document.head.appendChild(toastStyle);
+let cF='all', cS='';
+const ORDER=['parvisepalum','brachypetalum','polyantha','paphiopedilum','sigmatopetalum','cochlopetalum','megastaminodium'];
+
+function pipC(k){ return (SUBG[k]||{}).color||'#888'; }
+
+
+function diffClass(diff) {
+  const d = diff.toLowerCase();
+  if (d.includes('très facile') || d.includes('idéal')) return 'diff-facile';
+  if (d.includes('facile')) return 'diff-facile';
+  if (d.includes('intermédiaire')) return 'diff-inter';
+  if (d.includes('difficile')) return 'diff-diff';
+  return 'diff-peu';
+}
+function careHTML(id) {
+  const c = CARE[id];
+  if (!c) return '';
+  return `
+    <div class="care-section">
+      <div class="care-title">Entretien & Culture</div>
+      <span class="diff-badge ${diffClass(c.diff)}">⚡ Difficulté : ${c.diff}</span>
+      <div class="care-grid">
+        <div class="care-item"><label>🌡 Température</label><span>${c.temp}</span></div>
+        <div class="care-item"><label>💧 Arrosage</label><span>${c.water}</span></div>
+        <div class="care-item"><label>💦 Humidité</label><span>${c.hum}</span></div>
+        <div class="care-item"><label>☀️ Lumière</label><span>${c.light}</span></div>
+      </div>
+      <div class="substrate-box"><strong>🪴 Substrat recommandé</strong>${c.sub}</div>
+    </div>`;
+}
+
+function render() {
+  const q = cS.toLowerCase();
+  const f = SP.filter(s => {
+    const mt = cF==='all' || s.subg===cF;
+    const mq = !q || s.n.toLowerCase().includes(q) || s.full.toLowerCase().includes(q)
+      || (s.com||'').toLowerCase().includes(q) || s.o.toLowerCase().includes(q) || s.d.toLowerCase().includes(q);
+    const mc = !showOnlyOwned || myCollection.has(s.id);
+    return mt && mq && mc;
+  });
+  document.getElementById('cb').textContent = `${f.length} espèce${f.length>1?'s':''}`;
+  const main = document.getElementById('mc2');
+  if (!f.length) {
+    const msg = showOnlyOwned ? 'Aucune orchidée dans ta collection pour ce filtre.' : `Aucune espèce trouvée pour "<strong>${cS}</strong>"`;
+    main.innerHTML = `<div class="empty"><div class="ic">${showOnlyOwned?'🌿':'👟'}</div><p>${msg}</p></div>`;
+    return;
+  }
+  let h = '';
+  if (cF === 'all') {
+    const sorted = [...f].sort((a, b) => a.full.localeCompare(b.full));
+    h = `<div class="grid">${sorted.map(s => card(s)).join('')}</div>`;
+  } else {
+    h = `<div class="grid">${f.map(s => card(s)).join('')}</div>`;
+  }
+  main.innerHTML = h;
+}
+
+function card(s) {
+  const cached = photoCache[s.id];
+  const owned = myCollection.has(s.id);
+  const lc = s.lv==='mouchetées'?'#f0e8f4':'#e8f4e8';
+  const ltx = s.lv==='mouchetées'?'#6a3878':'#2e6a3e';
+  let imgInner;
+  if (cached && cached.thumb) {
+    const editBtn = `<button class="edit-photo-btn" onclick="addPhoto('${s.id}',event)" title="Changer la photo">✏️</button>`;
+    imgInner = `<img src="${cached.thumb}" alt="${s.full}" loading="lazy" onload="this.classList.add('loaded')" onerror="this.parentNode.innerHTML='<div class=\\'noimg\\'>👟<span>Indisponible</span></div>'">
+      ${editBtn}`;
+    if (s.new_) imgInner += `<span class="new-badge">Récente</span>`;
+    imgInner += `<div class="pip" style="background:${pipC(s.subg)}"></div>`;
+  } else {
+    imgInner = `<div class="noimg" style="cursor:default">
+        <button class="add-photo-btn" onclick="addPhoto('${s.id}',event)">➕ Ajouter photo</button>
+      </div>`;
+    if (s.new_) imgInner += `<span class="new-badge">Récente</span>`;
+    imgInner += `<div class="pip" style="background:${pipC(s.subg)}"></div>`;
+  }
+  if (owned) imgInner += `<div class="own-ribbon"></div>`;
+  const collectBtn = `<button class="collect-btn ${owned?'owned':'notowned'}" onclick="toggleOwn('${s.id}',event)">
+    <span>${owned?'':'🌿 J\'ai cette orchidée'}</span>
+  </button>`;
+  return `<div class="card ${owned?'card-owned':''}" onclick="openM('${s.id}')" style="${owned?'border-color:#2a5c42;box-shadow:0 0 0 1px #2a5c4240;':''}">
+    <div class="ciw" id="img-wrap-${s.id}">${imgInner}</div>
+    <div class="cb2">
+      <div class="cn">${s.n}${s.com?` <span style="font-size:.7rem;font-style:normal;color:var(--muted)">"${s.com}"</span>`:''}</div>
+      <div class="co">${s.o}</div>
+      ${s.e&&s.e!=='—'?`<div class="ce">${s.e}</div>`:''}
+      <div class="cd">${s.d.substring(0,80)}${s.d.length>80?'…':''}</div>
+      <div style="display:flex;gap:.4rem;align-items:center;margin-top:.4rem;flex-wrap:wrap">
+        <span class="lbadge" style="background:${lc};color:${ltx}">🍃 ${s.lv}</span>
+      ${CARE[s.id] ? `<span class="lbadge" style="background:${diffClass(CARE[s.id].diff)==='diff-facile'?'#d4edda':diffClass(CARE[s.id].diff)==='diff-inter'?'#fff3cd':diffClass(CARE[s.id].diff)==='diff-diff'?'#f8d7da':'#e2e3e5'};color:${diffClass(CARE[s.id].diff)==='diff-facile'?'#155724':diffClass(CARE[s.id].diff)==='diff-inter'?'#856404':diffClass(CARE[s.id].diff)==='diff-diff'?'#721c24':'#383d41'}">⚡ ${CARE[s.id].diff}</span>` : ''}
+        ${collectBtn}
+      </div>
+    </div>
+  </div>`;
+}
+
+function openM(id) {
+  const s = SP.find(x => x.id === id);
+  if (!s) return;
+  const c = SUBG[s.subg] || {};
+  const cached = photoCache[id];
+  const owned = myCollection.has(id);
+  let imgPart;
+  if (cached && cached.thumb) {
+    const bigUrl = cached.full || cached.thumb;
+    imgPart = `<img class="mimg" src="${bigUrl}" alt="${s.full}" onload="this.classList.add('loaded')" onerror="this.outerHTML='<div class=\\'mph\\'>👟</div>'">`;
+  } else {
+    imgPart = `<div class="mph">👟</div>`;
+  }
+  const creditHtml = cached && cached.credit
+    ? `<div class="mphoto-credit">📷 Photo : <a href="${cached.creditUrl}" target="_blank">${cached.credit}</a> (CC)</div>`
+    : '';
+  document.getElementById('mb').innerHTML = `
+    <div class="mhero" style="position:relative">
+      ${imgPart}
+      <div class="mband" style="background:linear-gradient(transparent,${c.color}cc)">Sous-genre ${c.label||s.subg}</div>
+    </div>
+    <div class="mbody">
+      <button id="modal-collect-${id}" class="modal-collect-btn ${owned?'owned':'notowned'}" onclick="toggleOwn('${id}');refreshModalCollBtn(this,'${id}')">
+        ${owned ? '✓ Dans ma collection · cliquer pour retirer' : '＋ Ajouter à ma collection'}
+      </button>
+      <button onclick="addPhoto('${id}', event)" style="
+        display:flex;align-items:center;justify-content:center;gap:.5rem;
+        width:100%;padding:.55rem;margin-bottom:1rem;
+        border-radius:8px;border:1.5px dashed #c5b898;
+        background:#fff;color:#2a5c42;font-family:'Jost',sans-serif;
+        font-size:.88rem;font-weight:500;cursor:pointer;transition:all .2s;
+      " onmouseover="this.style.borderColor='#2a5c42';this.style.background='#edf5f0'"
+         onmouseout="this.style.borderColor='#c5b898';this.style.background='#fff'">
+        📷 ${cached ? 'Changer la photo' : 'Ajouter une photo'}
+      </button>
+      <div class="citesbadge">⚠️ CITES Appendice I — espèce protégée</div>
+      ${s.new_?'<span style="display:inline-flex;align-items:center;gap:.3rem;background:#e8f4ff;color:#1a4a72;border:1px solid #90c0f0;border-radius:4px;padding:.13rem .45rem;font-size:.68rem;font-weight:600;margin-bottom:.7rem;margin-left:.4rem">🔬 Espèce décrite récemment</span>':''}
+      <div class="mt">${s.full}</div>
+      <div class="msub">${s.com?`"${s.com}" · `:''}Orchidaceae · Cypripedioideae</div>
+      <div class="mgrid">
+        <div class="mi"><label>Origine</label><span>${s.o||'—'}</span></div>
+        <div class="mi"><label>Altitude</label><span>${s.e||'—'}</span></div>
+        <div class="mi"><label>Feuilles</label><span>${s.lv==='mouchetées'?'🍃 Mouchetées':'🍃 Vertes uniformes'}</span></div>
+        <div class="mi"><label>Sous-genre</label><span>${c.label||s.subg}</span></div>
+      </div>
+      <div class="mdesc">${s.d}</div>
+      ${careHTML(id)}
+      ${creditHtml}
+    </div>`;
+  document.getElementById('mo').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeMO(e) { if (e.target === document.getElementById('mo')) closeMD(); }
+function closeMD() { document.getElementById('mo').classList.remove('open'); document.body.style.overflow = ''; }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMD(); });
+function setFilter(t, b) {
+  cF = t;
+  document.querySelectorAll('.fb').forEach(x => x.classList.remove('active'));
+  b.classList.add('active');
+  render();
+}
+function filterSpecies() { cS = document.getElementById('si').value; render(); }
+
+// ── INIT ─────────────────────────────────────────────────────────────────
+loadCollection();
+loadAllPhotos();
+render();
+</script>
+</body>
+</html>
